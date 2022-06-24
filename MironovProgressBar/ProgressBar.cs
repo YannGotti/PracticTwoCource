@@ -17,173 +17,68 @@ namespace MironovProgressBar
             InitializeComponent();
         }
 
-        int min = 0;// Minimum value for progress range
-        int max = 100;// Maximum value for progress range
-        int val = 0;// Current progress
-        Color BarColor = Color.Blue;// Color of progress meter
-
-        protected override void OnResize(EventArgs e)
+        private void ProgressBar_Paint(object sender, PaintEventArgs e)
         {
-            // Invalidate the control to get a repaint.
-            this.Invalidate();
+            Pen blackPen = new Pen(Color.Black, 3);
+            int x = 0;
+            int y = 0;
+            int width = 200;
+            int height = 245;
+            e.Graphics.Clear(Color.Wheat);
+            e.Graphics.DrawRectangle(blackPen, x, y, width, height);
+
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        public void ClearGraphics(Graphics g)
         {
-            Graphics g = e.Graphics;
-            SolidBrush brush = new SolidBrush(BarColor);
-            float percent = (float)(val - min) / (float)(max - min);
-            Rectangle rect = this.ClientRectangle;
+            g = CreateGraphics();
+            g.Clear(Color.Wheat);
 
-            rect.Width = (int)((float)rect.Width * percent);
+            Pen blackPen = new Pen(Color.Black, 3);
+            int x = 0;
+            int y = 0;
+            int width = 200;
+            int height = 245;
+            g.DrawRectangle(blackPen, x, y, width, height);
+        }
 
+        public void DrawCube(Graphics g, int x, int y, Brush brush , int percent)
+        {
+            g = CreateGraphics();
+
+            Rectangle rect = new Rectangle(x, y, 40, 35);
+            Rectangle rect2 = new Rectangle(x + 10, y - 10, 40, 35);
+
+
+            PointF point1 = new PointF(x, y);
+            PointF point2 = new PointF(x + 10, y - 10);
+
+            PointF point5 = new PointF(x + 40, y + 35);
+            PointF point6 = new PointF(x + 50, y + 25);
+
+            PointF point7 = new PointF(x + 40, y);
+            PointF point8 = new PointF(x + 50, y - 10);
+
+            Pen Pen = new Pen(Color.Black, 3);
+            Font Font = new Font("Arial", 16);
+            SolidBrush textBrush = new SolidBrush(Color.White);
+            StringFormat drawFormat = new StringFormat();
+            drawFormat.FormatFlags = StringFormatFlags.DirectionRightToLeft;
+
+
+
+            g.DrawRectangle(Pen, rect2);
             g.FillRectangle(brush, rect);
+            g.DrawString(percent.ToString(), Font, textBrush, x + 40, y + 5, drawFormat);
+            g.DrawRectangle(Pen, rect);
+            g.DrawLine(Pen, point1, point2);
+            g.DrawLine(Pen, point5, point6);
+            g.DrawLine(Pen, point7, point8);
 
-            Draw3DBorder(g);
 
-            brush.Dispose();
-            g.Dispose();
+
+
         }
 
-        public int Minimum
-        {
-            get
-            {
-                return min;
-            }
-
-            set
-            {
-                if (value < 0)
-                {
-                    value = 0;
-                }
-                if (value > max)
-                {
-                    max = value;
-                }
-
-                min = value;
-
-                if (val < min)
-                {
-                    val = min;
-                }
-
-                Invalidate();
-            }
-        }
-
-        public int Maximum
-        {
-            get
-            {
-                return max;
-            }
-
-            set
-            {
-                if (value < min)
-                {
-                    min = value;
-                }
-
-                max = value;
-
-                if (val > max)
-                {
-                    val = max;
-                }
-
-                this.Invalidate();
-            }
-        }
-
-        public int Value
-        {
-            get
-            {
-                return val;
-            }
-
-            set
-            {
-                int oldValue = val;
-
-                if (value < min)
-                {
-                    val = min;
-                }
-                else if (value > max)
-                {
-                    val = max;
-                }
-                else
-                {
-                    val = value;
-                }
-
-                float percent;
-
-                Rectangle newValueRect = this.ClientRectangle;
-                Rectangle oldValueRect = this.ClientRectangle;
-
-                percent = (float)(val - min) / (float)(max - min);
-                newValueRect.Width = (int)((float)newValueRect.Width * percent);
-
-                percent = (float)(oldValue - min) / (float)(max - min);
-                oldValueRect.Width = (int)((float)oldValueRect.Width * percent);
-
-                Rectangle updateRect = new Rectangle();
-
-
-                if (newValueRect.Width > oldValueRect.Width)
-                {
-                    updateRect.X = oldValueRect.Size.Width;
-                    updateRect.Width = newValueRect.Width - oldValueRect.Width;
-                }
-                else
-                {
-                    updateRect.X = newValueRect.Size.Width;
-                    updateRect.Width = oldValueRect.Width - newValueRect.Width;
-                }
-
-                updateRect.Height = this.Height;
-                Invalidate(updateRect);
-            }
-        }
-
-        public Color ProgressBarColor
-        {
-            get
-            {
-                return BarColor;
-            }
-
-            set
-            {
-                BarColor = value;
-
-                Invalidate();
-            }
-        }
-
-        private void Draw3DBorder(Graphics g)
-        {
-            int PenWidth = (int)Pens.White.Width;
-
-            g.DrawLine(Pens.DarkGray,
-            new Point(this.ClientRectangle.Left, this.ClientRectangle.Top),
-            new Point(this.ClientRectangle.Width - PenWidth, this.ClientRectangle.Top));
-            g.DrawLine(Pens.DarkGray,
-            new Point(this.ClientRectangle.Left, this.ClientRectangle.Top),
-            new Point(this.ClientRectangle.Left, this.ClientRectangle.Height - PenWidth));
-            g.DrawLine(Pens.White,
-            new Point(this.ClientRectangle.Left, this.ClientRectangle.Height - PenWidth),
-            new Point(this.ClientRectangle.Width - PenWidth, this.ClientRectangle.Height - PenWidth));
-            g.DrawLine(Pens.White,
-            new Point(this.ClientRectangle.Width - PenWidth, this.ClientRectangle.Top),
-            new Point(this.ClientRectangle.Width - PenWidth, this.ClientRectangle.Height - PenWidth));
-        }
     }
 }
