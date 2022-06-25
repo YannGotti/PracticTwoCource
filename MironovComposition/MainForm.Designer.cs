@@ -267,6 +267,7 @@
             this.SizeTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.SizeTextBox.Name = "SizeTextBox";
             this.SizeTextBox.Size = new System.Drawing.Size(50, 25);
+            this.SizeTextBox.Text = "100";
             // 
             // toolStripLabel3
             // 
@@ -281,6 +282,7 @@
             this.RotateTextBox.Name = "RotateTextBox";
             this.RotateTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.RotateTextBox.Size = new System.Drawing.Size(50, 25);
+            this.RotateTextBox.Text = "0";
             // 
             // toolStripLabel4
             // 
@@ -294,18 +296,21 @@
             this.rTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.rTextBox.Name = "rTextBox";
             this.rTextBox.Size = new System.Drawing.Size(45, 25);
+            this.rTextBox.Text = "145";
             // 
             // gTextBox
             // 
             this.gTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gTextBox.Name = "gTextBox";
             this.gTextBox.Size = new System.Drawing.Size(45, 25);
+            this.gTextBox.Text = "145";
             // 
             // bTextBox
             // 
             this.bTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bTextBox.Name = "bTextBox";
             this.bTextBox.Size = new System.Drawing.Size(45, 25);
+            this.bTextBox.Text = "145";
             // 
             // submitButton
             // 

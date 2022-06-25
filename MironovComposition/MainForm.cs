@@ -27,9 +27,15 @@ namespace MironovComposition
             VisibleStripTools(false);
             objects = new List<Object>();
 
-            CubeObject cube = new CubeObject("Куб_1", 250, 250);
+            CubeObject cube2 = new CubeObject("Куб2", 400, 380);
+            CubeObject cube = new CubeObject("Куб1", 200, 380);
+
+            TriangleObject triangle = new TriangleObject("Треугольник", 500, 100);
 
             objects.Add(cube);
+            objects.Add(cube2);
+            objects.Add(triangle);
+
             canvas1.Objects = objects;
             FillListBox(objects);
 
@@ -58,42 +64,36 @@ namespace MironovComposition
             {
                 if (Object.Size != size)
                 {
-                    float numFloat = 50 * (size / 100f);
-                    int side = (int)Math.Ceiling(numFloat);
-
-                    if (Object.Size < size)
+                    if (Object.GetObjectType() == ObjectsTypes.Cube)
                     {
-                        Object.X -= side / 4;
-                        Object.Y -= side / 4;
+                        if (Object.Size < size)
+                        {
+                            Object.X -= size / 12;
+                            Object.Y -= size / 12;
+                        }
+                        else
+                        {
+                            Object.X += size / 12;
+                            Object.Y += size / 12;
+                        }
                     }
                     else
                     {
-                        Object.X += side / 4;
-                        Object.Y += side / 4;
+                        if (Object.Size < size)
+                        {
+                            Object.Y -= size / 12;
+                        }
+                        else
+                        {
+                            Object.Y += size / 12;
+                        }
+
                     }
+
                     Object.Size = size;
                 }
 
-                if (Object.Rotate != rotate)
-                {
-                    double angleDouble = rotate * Math.PI / 180;
-                    int angle = (int)Math.Ceiling(angleDouble);
-
-                    if (Object.Rotate < rotate)
-                    {
-                        Object.X -= angle;
-                        Object.Y -= angle;
-                    }
-                    else
-                    {
-                        Object.X += angle;
-                        Object.Y += angle;
-                    }
-                    Object.Rotate = rotate;
-
-                }
-
-
+                Object.Rotate = rotate;
                 Object.Opacity = opacity;
                 Object.ColorR = R;
                 Object.ColorG = G;
