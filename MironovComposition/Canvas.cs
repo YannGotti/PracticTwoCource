@@ -65,6 +65,7 @@ namespace MironovComposition
                         case ObjectsTypes.Springboard:
                             break;
                         case ObjectsTypes.Lamp:
+                            DrawLamp(g, o, bound);
                             break;
                         default:
                             break;
@@ -152,5 +153,71 @@ namespace MironovComposition
 
             g.FillPolygon(brush, myArray);
         }
+
+        protected void DrawLamp(Graphics g, Object Object, Rectangle bound)
+        {
+            x = 580;
+            y = bound.Height - 4;
+            opacity = Object.Opacity;
+            R = Object.ColorR;
+            B = Object.ColorB;
+            G = Object.ColorG;
+            rotate = Object.Rotate = 90;
+
+            Pen Pen = new Pen(Color.Black, 3);
+            Pen PenCircle = new Pen(Color.Black, 3);
+
+            SolidBrush brush = new SolidBrush(Color.FromArgb(R, G, B));
+            PointF[] LampBord =
+            {
+                new Point(x, y),new Point(x + 10, y - 10),
+                new Point(x + 10, y - 10), new Point(x + 190, y - 10),
+                new Point(x + 190, y - 10), new Point(x + 190 + 10, y),
+            };
+
+            PointF[] LampBord2 =
+            {
+                new Point(x + 25, y - 10),new Point(x + 40, y - 25),
+                new Point(x + 40, y - 25), new Point(x + 190 - 25, y - 25),
+                new Point(x + 190 - 25, y - 25), new Point(x + 190 - 15, y - 10),
+            };
+
+            PointF[] LampLines =
+            {
+                new Point(x + 15 + 104, y - 25),new Point(x + 9 + 180, y - 21 - 180),
+                new Point(x + 10 + 183, y - 22 - 177), new Point(x + 15 + 110, y - 25)
+            };
+
+            PointF[] LampLines2 =
+            {
+                new Point(x + 30 + 104, y - 25),new Point(x + 20 + 180, y - 15 - 180),
+                new Point(x + 25 + 180, y - 195),new Point(x + 30 + 110, y - 25)
+            };
+
+
+            Matrix Matrix = new Matrix();
+            Matrix.Rotate(0);
+            g.Transform = Matrix;
+
+            g.DrawPolygon(Pen, LampBord);
+            g.DrawPolygon(Pen, LampBord2);
+            g.DrawPolygon(Pen, LampLines);
+            g.DrawLines(Pen, LampLines2);
+            Rectangle circle = new Rectangle(x + 180, y - 255, 60, 60);
+            Rectangle circle2 = new Rectangle(x + 180 + 15, y - 255 + 15, 30, 30);
+
+            g.DrawEllipse(PenCircle, circle);
+            g.DrawEllipse(PenCircle, circle2);
+
+            Matrix.RotateAt(rotate, new PointF(x + 180 + 30, y - 255 + 30));
+            g.Transform = Matrix;
+            g.DrawLines(Pen, LampLines);
+            g.DrawLines(Pen, LampLines2);
+
+
+
+
+        }
+
     }
 }

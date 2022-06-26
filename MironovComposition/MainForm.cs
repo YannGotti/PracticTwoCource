@@ -27,14 +27,15 @@ namespace MironovComposition
             VisibleStripTools(false);
             objects = new List<Object>();
 
-            CubeObject cube2 = new CubeObject("Куб2", 400, 380);
-            CubeObject cube = new CubeObject("Куб1", 200, 380);
+            CubeObject cube2 = new CubeObject("Куб", 50, 380);
+            TriangleObject triangle = new TriangleObject("Треугольник", 50, 100);
+            LampObject Lamp = new LampObject("Лампа", 0, 0);
 
-            TriangleObject triangle = new TriangleObject("Треугольник", 500, 100);
 
-            objects.Add(cube);
             objects.Add(cube2);
             objects.Add(triangle);
+            objects.Add(Lamp);
+
 
             canvas1.Objects = objects;
             FillListBox(objects);
