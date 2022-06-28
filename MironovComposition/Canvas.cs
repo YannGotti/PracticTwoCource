@@ -23,6 +23,7 @@ namespace MironovComposition
         int B;
         int G;
 
+
         public Canvas()
         {
             InitializeComponent();
@@ -56,6 +57,9 @@ namespace MironovComposition
                     Object o = objectsList[i];
                     switch (o.GetObjectType())
                     {
+                        case ObjectsTypes.Lamp:
+                            DrawLamp(g, o, bound);
+                            break;
                         case ObjectsTypes.Cube:
                             DrawCube(g, o, bound);
                             break;
@@ -63,9 +67,6 @@ namespace MironovComposition
                             DrawTriangle(g, o);
                             break;
                         case ObjectsTypes.Springboard:
-                            break;
-                        case ObjectsTypes.Lamp:
-                            DrawLamp(g, o, bound);
                             break;
                         default:
                             break;
@@ -111,14 +112,13 @@ namespace MironovComposition
             myMatrix.RotateAt(rotate, new PointF(x + size / 2, y + size / 2));
 
 
-            if (rotate == 0 || rotate == 90 || rotate == 180 || rotate == 360)
+            if (rotate == 0 || rotate == 90 || rotate == 180 || rotate == 270 || rotate == 360)
             {
                 PointF[] ArrayShadow =
                 {
                     new Point(x, y), new Point(x + size, y),
-                    new Point(x + size, y), new Point(x + size, bound.Bottom),
-                    new Point(x + size, bound.Bottom - 3), new Point(x - 80, bound.Bottom - 3),
-                    new Point(x - 80, bound.Bottom - 3), new Point(x, y)
+                    new Point(x + size, y), new Point(x + size, y + size), new Point(x + size - 30, bound.Bottom - 3),
+                    new Point(x - 200, bound.Bottom - 3), new Point(x, y)
                 };
 
                 g.FillPolygon(brushShadow, ArrayShadow);
@@ -139,6 +139,8 @@ namespace MironovComposition
             B = Object.ColorB;
             G = Object.ColorG;
 
+
+
             SolidBrush brush = new SolidBrush(Color.FromArgb(R, G, B));
             PointF[] myArray =
             {
@@ -158,16 +160,26 @@ namespace MironovComposition
         {
             x = 680;
             y = bound.Height - 4;
+
             opacity = Object.Opacity;
             R = Object.ColorR;
             B = Object.ColorB;
             G = Object.ColorG;
             rotate = Object.Rotate;
+            bool enable = Object.Enabled;
 
+            int cube = 80;
             Pen Pen = new Pen(Color.Black, 3);
+            Pen PenEnable = new Pen(Color.Black, 4);
             Pen PenCircle = new Pen(Color.Black, 3);
+            SolidBrush brushLight = new SolidBrush(Color.FromArgb(90, 255, 180, 63));
 
-            SolidBrush brush = new SolidBrush(Color.FromArgb(R, G, B));
+
+            Rectangle circle = new Rectangle(x + 180, y - 255, 60, 60);
+            Rectangle circle2 = new Rectangle(x + 180 + 15, y - 255 + 15, 30, 30);
+            Rectangle rect = new Rectangle(x + 210, y - 13, 50, 50);
+
+
             PointF[] LampBord =
             {
                 new Point(x, y),new Point(x + 10, y - 10),
@@ -182,8 +194,6 @@ namespace MironovComposition
                 new Point(x + 190 - 25, y - 25), new Point(x + 190 - 15, y - 10),
             };
 
-
-
             PointF[] LampLines =
             {
                 new Point(x + 15 + 104, y - 25),new Point(x + 9 + 180, y - 21 - 180),
@@ -195,7 +205,6 @@ namespace MironovComposition
                 new Point(x + 30 + 104, y - 25),new Point(x + 20 + 180, y - 15 - 180),
                 new Point(x + 25 + 180, y - 195),new Point(x + 30 + 110, y - 25)
             };
-
 
             PointF[] LampLines3 =
             {
@@ -210,9 +219,6 @@ namespace MironovComposition
             };
 
 
-            int cube = 80;
-
-
             PointF[] LampHead =
             {
                 new Point(x + 180, y - 50), new Point(x + 200 - cube, y - 90),
@@ -221,7 +227,20 @@ namespace MironovComposition
                 new Point(x + 202, y + 75), new Point(x + 150, y + 10),
             };
 
-            
+
+            PointF[] Light =
+            {
+                new Point(x + 202, y + 77),new Point(x + 273, y - 50),
+                new Point(1400, 360), new Point(2000, bound.Bottom),
+                new Point(x + 273 + 2000, y + 2500), new Point(x + 202, y + 77),
+            };
+
+            PointF[] Enable =
+            {
+                new Point(742, 443),new Point(751, 428),
+                new Point(735, 428),
+            };
+            SolidBrush brushLightLamp;
 
 
             Matrix Matrix = new Matrix();
@@ -231,20 +250,36 @@ namespace MironovComposition
             g.DrawPolygon(Pen, LampBord2);
             g.DrawPolygon(Pen, LampLines);
             g.DrawLines(Pen, LampLines2);
-            Rectangle circle = new Rectangle(x + 180, y - 255, 60, 60);
-            Rectangle circle2 = new Rectangle(x + 180 + 15, y - 255 + 15, 30, 30);
-
             g.DrawEllipse(PenCircle, circle);
             g.DrawEllipse(PenCircle, circle2);
+
+            if (enable)
+            {
+                brushLightLamp = new SolidBrush(Color.FromArgb(100, 255, 213, 100));
+                g.DrawLine(PenEnable, Enable[0], Enable[2]);
+            }
+            else
+            {
+                brushLightLamp = new SolidBrush(Color.FromArgb(100, 120, 120, 100));
+                g.DrawLine(PenEnable, Enable[0], Enable[1]);
+            }
 
 
             Matrix.RotateAt(rotate, new PointF(x + 180 + 30, y - 255 + 30));
             g.Transform = Matrix;
-            Rectangle rect = new Rectangle(x + 210, y - 13, 50, 50);
-            g.FillPie(Brushes.DarkGray, rect, 300, 180);
+
+            if (enable)
+            {
+                g.FillPolygon(brushLight, Light);
+            }
+            g.FillPie(brushLightLamp, rect, 300, 180);
             g.DrawLines(Pen, LampLines3);
             g.DrawLines(Pen, LampLines4);
             g.DrawLines(Pen, LampHead);
+
+            
+
+
         }
         private void Canvas_MouseClick(object sender, MouseEventArgs e)
         {

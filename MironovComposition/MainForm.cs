@@ -20,21 +20,18 @@ namespace MironovComposition
         int G = 0;
         int B = 0;
 
+        LampObject Lamp = new LampObject("Лампа", 0, 0);
+        TriangleObject triangle = new TriangleObject("Треугольник", 50, 100);
+        CubeObject cube2 = new CubeObject("Куб", 250, 270);
 
         public MainForm()
         {
             InitializeComponent();
             VisibleStripTools(false);
             objects = new List<Object>();
-
-            CubeObject cube2 = new CubeObject("Куб", 250, 250);
-            TriangleObject triangle = new TriangleObject("Треугольник", 50, 100);
-            LampObject Lamp = new LampObject("Лампа", 0, 0);
-
-
-            objects.Add(cube2);
-            objects.Add(triangle);
             objects.Add(Lamp);
+            objects.Add(triangle);
+            objects.Add(cube2);
 
 
             canvas1.Objects = objects;
@@ -160,19 +157,16 @@ namespace MironovComposition
                 return false;
             }
 
-            if (Object.GetObjectType() == ObjectsTypes.Lamp)
+            if (Object.GetObjectType() == ObjectsTypes.Lamp && int.Parse(RotateTextBox.Text) < 80)
             {
-                if (int.Parse(RotateTextBox.Text) < 80)
-                {
-                    MessageBox.Show("Угол лампы не может быть меньше 80 градусов");
-                    return false;
-                }
+                MessageBox.Show("Угол лампы не может быть меньше 80 градусов");
+                return false;
+            }
                     
-                if (int.Parse(RotateTextBox.Text) > 120)
-                {
-                    MessageBox.Show("Угол лампы не может быть больше 120 градусов");
-                    return false;
-                }
+            if (Object.GetObjectType() == ObjectsTypes.Lamp &&  int.Parse(RotateTextBox.Text) > 120)
+            {
+                MessageBox.Show("Угол лампы не может быть больше 120 градусов");
+                return false;
             }
 
             if (!int.TryParse(rTextBox.Text, out R))
@@ -196,6 +190,16 @@ namespace MironovComposition
             return true;
         }
 
+        private void StartAnimation(object sender, EventArgs e)
+        {
+            Lamp.Enabled = true;
+            canvas1.Invalidate();
+        }
 
+        private void StopAnimation(object sender, EventArgs e)
+        {
+            Lamp.Enabled = false;
+            canvas1.Invalidate();
+        }
     }
 }

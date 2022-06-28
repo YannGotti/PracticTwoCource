@@ -27,8 +27,7 @@ namespace MironovComposition
         int R;
         int B;
         int G;
-
-        Graphics g;
+        bool enable;
 
         public Object()
         {
@@ -50,9 +49,10 @@ namespace MironovComposition
 
             size = 100;
             rotate = 0;
-            R = 0;
-            G = 0;
-            B = 0;
+            R = 252;
+            G = 252;
+            B = 252;
+            enable = false;
         }
 
         public string Name
@@ -187,15 +187,15 @@ namespace MironovComposition
             }
         }
 
-        public Graphics Graphics
+        public bool Enabled
         {
             set
             {
-                g = value;
+                enable = value;
             }
             get
             {
-                return g;
+                return enable;
             }
         }
 
@@ -282,7 +282,7 @@ namespace MironovComposition
 
     public class LampObject : Object
     {
-
+        bool enable;
         public LampObject()
             : base()
         {
@@ -293,6 +293,7 @@ namespace MironovComposition
             : base(name, x, y)
         {
             Rotate = 110;
+            enable = false;
         }
 
         public override ObjectsTypes GetObjectType()
