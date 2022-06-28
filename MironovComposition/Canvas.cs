@@ -156,13 +156,13 @@ namespace MironovComposition
 
         protected void DrawLamp(Graphics g, Object Object, Rectangle bound)
         {
-            x = 580;
+            x = 680;
             y = bound.Height - 4;
             opacity = Object.Opacity;
             R = Object.ColorR;
             B = Object.ColorB;
             G = Object.ColorG;
-            rotate = Object.Rotate = 90;
+            rotate = Object.Rotate;
 
             Pen Pen = new Pen(Color.Black, 3);
             Pen PenCircle = new Pen(Color.Black, 3);
@@ -182,6 +182,8 @@ namespace MironovComposition
                 new Point(x + 190 - 25, y - 25), new Point(x + 190 - 15, y - 10),
             };
 
+
+
             PointF[] LampLines =
             {
                 new Point(x + 15 + 104, y - 25),new Point(x + 9 + 180, y - 21 - 180),
@@ -195,10 +197,36 @@ namespace MironovComposition
             };
 
 
+            PointF[] LampLines3 =
+            {
+                new Point(x + 35 + 104, y - 75),new Point(x + 9 + 180, y - 21 - 180),
+                new Point(x + 10 + 183, y - 22 - 177), new Point(x + 35 + 110, y - 75)
+            };
+
+            PointF[] LampLines4 =
+            {
+                new Point(x + 50 + 104, y - 65),new Point(x + 20 + 180, y - 15 - 180),
+                new Point(x + 25 + 180, y - 195),new Point(x + 50 + 110, y - 65)
+            };
+
+
+            int cube = 80;
+
+
+            PointF[] LampHead =
+            {
+                new Point(x + 180, y - 50), new Point(x + 200 - cube, y - 90),
+                new Point(x + 90, y - 20), new Point(x + 150, y + 10),
+                new Point(x + 180, y - 50), new Point(x + 271, y - 47),
+                new Point(x + 202, y + 75), new Point(x + 150, y + 10),
+            };
+
+            
+
+
             Matrix Matrix = new Matrix();
             Matrix.Rotate(0);
             g.Transform = Matrix;
-
             g.DrawPolygon(Pen, LampBord);
             g.DrawPolygon(Pen, LampBord2);
             g.DrawPolygon(Pen, LampLines);
@@ -209,15 +237,18 @@ namespace MironovComposition
             g.DrawEllipse(PenCircle, circle);
             g.DrawEllipse(PenCircle, circle2);
 
+
             Matrix.RotateAt(rotate, new PointF(x + 180 + 30, y - 255 + 30));
             g.Transform = Matrix;
-            g.DrawLines(Pen, LampLines);
-            g.DrawLines(Pen, LampLines2);
-
-
-
-
+            Rectangle rect = new Rectangle(x + 210, y - 13, 50, 50);
+            g.FillPie(Brushes.DarkGray, rect, 300, 180);
+            g.DrawLines(Pen, LampLines3);
+            g.DrawLines(Pen, LampLines4);
+            g.DrawLines(Pen, LampHead);
         }
-
+        private void Canvas_MouseClick(object sender, MouseEventArgs e)
+        {
+            MessageBox.Show(e.Location.ToString());
+        }
     }
 }

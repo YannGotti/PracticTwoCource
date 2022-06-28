@@ -27,7 +27,7 @@ namespace MironovComposition
             VisibleStripTools(false);
             objects = new List<Object>();
 
-            CubeObject cube2 = new CubeObject("Куб", 50, 380);
+            CubeObject cube2 = new CubeObject("Куб", 250, 250);
             TriangleObject triangle = new TriangleObject("Треугольник", 50, 100);
             LampObject Lamp = new LampObject("Лампа", 0, 0);
 
@@ -52,7 +52,7 @@ namespace MironovComposition
             ObjectsComboBox.Items.Clear();
 
             foreach (Object o in objects)
-                if (o.GetObjectType() != ObjectsTypes.Lamp && o.GetObjectType() != ObjectsTypes.Springboard)
+                if (o.GetObjectType() != ObjectsTypes.Springboard)
                     ObjectsComboBox.Items.Add(o.Name);
         }
 
@@ -61,7 +61,8 @@ namespace MironovComposition
             int index = ObjectsComboBox.SelectedIndex;
             Object Object = objects[index];
 
-            if (CheckData())
+
+            if (CheckData(Object))
             {
                 if (Object.Size != size)
                 {
@@ -106,6 +107,27 @@ namespace MironovComposition
         private void ObjectsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             VisibleStripTools(true);
+            int index = ObjectsComboBox.SelectedIndex;
+            Object Object = objects[index];
+
+            if (Object.GetObjectType() == ObjectsTypes.Lamp)
+            {
+                SizeTextBox.ReadOnly = true;
+                rTextBox.ReadOnly = true;
+                gTextBox.ReadOnly = true;
+                bTextBox.ReadOnly = true;
+
+                RotateTextBox.Text = 90.ToString();
+
+
+            }
+            else
+            {
+                SizeTextBox.ReadOnly = false;
+                rTextBox.ReadOnly = false;
+                gTextBox.ReadOnly = false;
+                bTextBox.ReadOnly = false;
+            }
         }
 
         public void VisibleStripTools(bool visible)
@@ -121,7 +143,7 @@ namespace MironovComposition
             submitButton.Visible = visible;
         }
 
-        public bool CheckData()
+        public bool CheckData(Object Object)
         {
 
             if (!int.TryParse(SizeTextBox.Text, out size))
@@ -130,12 +152,28 @@ namespace MironovComposition
                 return false;
             }
 
+            
+
             if (!int.TryParse(RotateTextBox.Text, out rotate))
             {
                 MessageBox.Show("Данные введены не корректно!");
                 return false;
             }
 
+            if (Object.GetObjectType() == ObjectsTypes.Lamp)
+            {
+                if (int.Parse(RotateTextBox.Text) < 80)
+                {
+                    MessageBox.Show("Угол лампы не может быть меньше 80 градусов");
+                    return false;
+                }
+                    
+                if (int.Parse(RotateTextBox.Text) > 120)
+                {
+                    MessageBox.Show("Угол лампы не может быть больше 120 градусов");
+                    return false;
+                }
+            }
 
             if (!int.TryParse(rTextBox.Text, out R))
             {

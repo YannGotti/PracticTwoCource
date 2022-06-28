@@ -292,7 +292,7 @@ namespace MironovComposition
         public LampObject(string name, int x, int y)
             : base(name, x, y)
         {
-
+            Rotate = 110;
         }
 
         public override ObjectsTypes GetObjectType()
