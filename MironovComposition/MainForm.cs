@@ -21,8 +21,9 @@ namespace MironovComposition
         int B = 0;
 
         LampObject Lamp = new LampObject("Лампа", 0, 0);
-        TriangleObject triangle = new TriangleObject("Треугольник", 50, 100);
-        CubeObject cube2 = new CubeObject("Куб", 250, 270);
+        TriangleObject triangle = new TriangleObject("Треугольник", 720, 275);
+        CubeObject cube = new CubeObject("Куб", 250, 370);
+        SpringboardObject Springboard = new SpringboardObject("Трамплин", 650, 375);
 
         public MainForm()
         {
@@ -31,7 +32,8 @@ namespace MironovComposition
             objects = new List<Object>();
             objects.Add(Lamp);
             objects.Add(triangle);
-            objects.Add(cube2);
+            objects.Add(cube);
+            objects.Add(Springboard);
 
 
             canvas1.Objects = objects;
@@ -76,7 +78,7 @@ namespace MironovComposition
                             Object.Y += size / 12;
                         }
                     }
-                    else
+                    if (Object.GetObjectType() == ObjectsTypes.Triangle)
                     {
                         if (Object.Size < size)
                         {

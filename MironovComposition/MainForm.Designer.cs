@@ -76,7 +76,7 @@
             this.фигурыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(954, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1106, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -107,21 +107,21 @@
             // запуститьToolStripMenuItem
             // 
             this.запуститьToolStripMenuItem.Name = "запуститьToolStripMenuItem";
-            this.запуститьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.запуститьToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.запуститьToolStripMenuItem.Text = "Запустить";
             this.запуститьToolStripMenuItem.Click += new System.EventHandler(this.StartAnimation);
             // 
             // остановитьToolStripMenuItem
             // 
             this.остановитьToolStripMenuItem.Name = "остановитьToolStripMenuItem";
-            this.остановитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.остановитьToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.остановитьToolStripMenuItem.Text = "Остановить";
             this.остановитьToolStripMenuItem.Click += new System.EventHandler(this.StopAnimation);
             // 
             // параметрыToolStripMenuItem
             // 
             this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
-            this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.параметрыToolStripMenuItem.Text = "Параметры";
             // 
             // фигурыToolStripMenuItem
@@ -253,7 +253,7 @@
             this.submitButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(954, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1106, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -266,7 +266,6 @@
             // 
             // SizeTextBox
             // 
-            this.SizeTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.SizeTextBox.Name = "SizeTextBox";
             this.SizeTextBox.Size = new System.Drawing.Size(50, 25);
             this.SizeTextBox.Text = "100";
@@ -280,7 +279,6 @@
             // 
             // RotateTextBox
             // 
-            this.RotateTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.RotateTextBox.Name = "RotateTextBox";
             this.RotateTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.RotateTextBox.Size = new System.Drawing.Size(50, 25);
@@ -295,21 +293,18 @@
             // 
             // rTextBox
             // 
-            this.rTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.rTextBox.Name = "rTextBox";
             this.rTextBox.Size = new System.Drawing.Size(45, 25);
             this.rTextBox.Text = "145";
             // 
             // gTextBox
             // 
-            this.gTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gTextBox.Name = "gTextBox";
             this.gTextBox.Size = new System.Drawing.Size(45, 25);
             this.gTextBox.Text = "145";
             // 
             // bTextBox
             // 
-            this.bTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bTextBox.Name = "bTextBox";
             this.bTextBox.Size = new System.Drawing.Size(45, 25);
             this.bTextBox.Text = "145";
@@ -330,7 +325,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 522);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(954, 19);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1106, 19);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -349,14 +344,14 @@
             this.canvas1.Location = new System.Drawing.Point(0, 49);
             this.canvas1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.canvas1.Name = "canvas1";
-            this.canvas1.Size = new System.Drawing.Size(954, 473);
+            this.canvas1.Size = new System.Drawing.Size(1106, 473);
             this.canvas1.TabIndex = 3;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(954, 541);
+            this.ClientSize = new System.Drawing.Size(1106, 541);
             this.Controls.Add(this.canvas1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.flowLayoutPanel1);

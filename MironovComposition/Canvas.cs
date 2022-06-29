@@ -14,15 +14,14 @@ namespace MironovComposition
     public partial class Canvas : UserControl
     {
         List<Object> objectsList;
-        int x;
-        int y;
-        int size;
-        double opacity;
-        int rotate;
-        int R;
-        int B;
-        int G;
-
+        int x = 0;
+        int y = 0;
+        double opacity = 0;
+        int size = 0;
+        int R = 0;
+        int B = 0;
+        int G = 0;
+        int rotate = 0;
 
         public Canvas()
         {
@@ -67,6 +66,7 @@ namespace MironovComposition
                             DrawTriangle(g, o);
                             break;
                         case ObjectsTypes.Springboard:
+                            DrawSpringboard(g, o, bound);
                             break;
                         default:
                             break;
@@ -88,6 +88,8 @@ namespace MironovComposition
         }
         protected void DrawCube(Graphics g, Object Object, Rectangle bound)
         {
+            g = CreateGraphics();
+
             x = Object.X;
             y = Object.Y;
             size = Object.Size;
@@ -130,6 +132,8 @@ namespace MironovComposition
 
         protected void DrawTriangle(Graphics g, Object Object)
         {
+            g = CreateGraphics();
+
             x = Object.X;
             y = Object.Y;
             size = Object.Size;
@@ -138,8 +142,6 @@ namespace MironovComposition
             R = Object.ColorR;
             B = Object.ColorB;
             G = Object.ColorG;
-
-
 
             SolidBrush brush = new SolidBrush(Color.FromArgb(R, G, B));
             PointF[] myArray =
@@ -152,13 +154,33 @@ namespace MironovComposition
             Matrix myMatrix = new Matrix();
             myMatrix.RotateAt(rotate, new PointF(x, y + size / 2));
             g.Transform = myMatrix;
-
             g.FillPolygon(brush, myArray);
         }
 
+
+        protected void DrawSpringboard(Graphics g, Object Object, Rectangle bound)
+        {
+            g = CreateGraphics();
+
+            x = Object.X;
+            y = Object.Y;
+
+            PointF[] myArray =
+            {
+                new Point(x, y),new Point(x + 150, y),
+                new Point(x + 150, bound.Bottom - 3),new Point(x - 250, bound.Bottom - 3),
+
+            };
+
+            g.FillPolygon(new SolidBrush(Color.White), myArray);
+        }
+
+
         protected void DrawLamp(Graphics g, Object Object, Rectangle bound)
         {
-            x = 680;
+            g = CreateGraphics();
+
+            x = 850;
             y = bound.Height - 4;
 
             opacity = Object.Opacity;
@@ -237,8 +259,8 @@ namespace MironovComposition
 
             PointF[] Enable =
             {
-                new Point(742, 443),new Point(751, 428),
-                new Point(735, 428),
+                new Point(915, 443),new Point(925, 428),
+                new Point(905, 428),
             };
             SolidBrush brushLightLamp;
 
@@ -281,6 +303,9 @@ namespace MironovComposition
 
 
         }
+
+        
+
         private void Canvas_MouseClick(object sender, MouseEventArgs e)
         {
             MessageBox.Show(e.Location.ToString());
