@@ -90,11 +90,6 @@ namespace MironovComposition
         {
             g = CreateGraphics();
 
-            x = Object.X;
-            y = Object.Y;
-            size = Object.Size;
-            opacity = Object.Opacity;
-            rotate = Object.Rotate;
             R = Object.ColorR;
             B = Object.ColorB;
             G = Object.ColorG;
@@ -102,18 +97,9 @@ namespace MironovComposition
             SolidBrush brush = new SolidBrush(Color.FromArgb(R, G, B));
             SolidBrush brushShadow = new SolidBrush(Color.FromArgb(30,0, 0, 0));
 
-            PointF[] ArrayCube =
-            {
-                new Point(x, y), new Point(x + size, y),
-                new Point(x + size, y), new Point(x + size,y + size),
-                new Point(x + size, y + size), new Point(x, y + size),
-                new Point(x, y + size), new Point(x, y)
-            };
+            PointF[] ArrayCube = Object.NewPoints;
 
-            Matrix myMatrix = new Matrix();
-            myMatrix.RotateAt(rotate, new PointF(x + size / 2, y + size / 2));
-
-            if (rotate == 0 || rotate == 90 || rotate == 180 || rotate == 270 || rotate == 360)
+            /*if (rotate == 0 || rotate == 90 || rotate == 180 || rotate == 270 || rotate == 360)
             {
                 PointF[] ArrayShadow =
                 {
@@ -123,9 +109,10 @@ namespace MironovComposition
                 };
 
                 g.FillPolygon(brushShadow, ArrayShadow);
-            }
-            
-            g.Transform = myMatrix;
+            }*/
+
+            g.Transform = Object.Matrix();
+
             g.FillPolygon(brush, ArrayCube);
             g.DrawPolygon(new Pen(Color.Black, 2), ArrayCube);
 
@@ -145,12 +132,8 @@ namespace MironovComposition
             G = Object.ColorG;
 
             SolidBrush brush = new SolidBrush(Color.FromArgb(R, G, B));
-            PointF[] myArray =
-            {
-                new Point(x, y),new Point(x + size / 2, y + size),
-                new Point(x + size / 2, y + size),new Point(x - size / 2, y + size),
+            PointF[] myArray = Object.NewPoints;
 
-            };
 
             Matrix myMatrix = new Matrix();
             myMatrix.RotateAt(rotate, new PointF(x, y + size / 2));

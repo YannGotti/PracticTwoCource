@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,11 @@ namespace MironovComposition
         int R;
         int B;
         int G;
+
         bool enable;
+
+        PointF[] newPoints;
+        PointF[] resultPoints;
 
         public Object()
         {
@@ -48,6 +53,7 @@ namespace MironovComposition
             this.y = y;
 
             size = 100;
+
             rotate = 0;
             R = 252;
             G = 252;
@@ -55,10 +61,34 @@ namespace MironovComposition
             enable = false;
         }
 
+        public Matrix Matrix()
+        {
+            Matrix Matrix = new Matrix();
+            Matrix.RotateAt(Rotate, new PointF(x + Size / 2, y + Size / 2));
+
+            return Matrix;
+        }
+
+
         public string Name
         {
             set { name = value; }
             get { return name; }
+        }
+
+        public PointF[] NewPoints
+        {
+            set
+            {
+                newPoints = value;
+            }
+            get { return newPoints; }
+        }
+
+        public PointF[] ResultPoints
+        {
+            set { resultPoints = value; }
+            get { return resultPoints; }
         }
 
         public int X
@@ -199,6 +229,9 @@ namespace MironovComposition
             }
         }
 
+        
+
+
         public virtual ObjectsTypes GetObjectType()
         {
             return ObjectsTypes.Unknown;
@@ -221,7 +254,13 @@ namespace MironovComposition
         public CubeObject(string name, int x, int y)
             : base(name, x, y)
         {
-
+            NewPoints = new PointF[]
+            {
+                new Point(x, y), new Point(x + Size, y),
+                new Point(x + Size, y), new Point(x + Size,y + Size),
+                new Point(x + Size, y + Size), new Point(x, y + Size),
+                new Point(x, y + Size), new Point(x, y)
+            };
         }
 
         public override ObjectsTypes GetObjectType()
@@ -245,8 +284,13 @@ namespace MironovComposition
         public TriangleObject(string name, int x, int y)
             : base(name, x, y)
         {
-
+            NewPoints = new PointF[]
+            {
+                new Point(x, y),new Point(x + Size / 2, y + Size),
+                new Point(x + Size / 2, y + Size),new Point(x - Size / 2, y + Size),
+            };
         }
+
 
         public override ObjectsTypes GetObjectType()
         {
@@ -259,7 +303,6 @@ namespace MironovComposition
 
     public class SpringboardObject : Object
     {
-
         public SpringboardObject()
             : base()
         {
@@ -269,7 +312,11 @@ namespace MironovComposition
         public SpringboardObject(string name, int x, int y)
             : base(name, x, y)
         {
-
+            NewPoints = new PointF[]
+            {
+                new Point(x, y),new Point(x + 150, y),
+                new Point(x + 150, 470),new Point(x - 250, 470)
+            };
         }
 
         public override ObjectsTypes GetObjectType()
@@ -283,6 +330,7 @@ namespace MironovComposition
     public class LampObject : Object
     {
         bool enable;
+
         public LampObject()
             : base()
         {
@@ -295,6 +343,7 @@ namespace MironovComposition
             Rotate = 110;
             enable = false;
         }
+        
 
         public override ObjectsTypes GetObjectType()
         {
@@ -303,5 +352,6 @@ namespace MironovComposition
         }
 
     }
+
 
 }

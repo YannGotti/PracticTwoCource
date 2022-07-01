@@ -97,6 +97,7 @@ namespace MironovComposition
                     Object.Size = size;
                 }
 
+
                 Object.X = x;
                 Object.Y = y;
 
@@ -106,6 +107,7 @@ namespace MironovComposition
                 Object.ColorR = R;
                 Object.ColorG = G;
                 Object.ColorB = B;
+
                 canvas1.Invalidate();
             }
         }
