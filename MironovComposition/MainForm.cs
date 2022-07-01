@@ -20,7 +20,10 @@ namespace MironovComposition
         int G = 0;
         int B = 0;
 
-        LampObject Lamp = new LampObject("Лампа", 0, 0);
+        int x = 0;
+        int y = 0;
+
+        LampObject Lamp = new LampObject("Лампа", 850, 469);
         TriangleObject triangle = new TriangleObject("Треугольник", 720, 275);
         CubeObject cube = new CubeObject("Куб", 250, 370);
         SpringboardObject Springboard = new SpringboardObject("Трамплин", 650, 375);
@@ -94,6 +97,10 @@ namespace MironovComposition
                     Object.Size = size;
                 }
 
+                Object.X = x;
+                Object.Y = y;
+
+
                 Object.Rotate = rotate;
                 Object.Opacity = opacity;
                 Object.ColorR = R;
@@ -108,6 +115,9 @@ namespace MironovComposition
             VisibleStripTools(true);
             int index = ObjectsComboBox.SelectedIndex;
             Object Object = objects[index];
+
+            TextBoxY.Text = Object.Y.ToString();
+            TextBoxX.Text = Object.X.ToString();
 
             if (Object.GetObjectType() == ObjectsTypes.Lamp)
             {
@@ -127,6 +137,9 @@ namespace MironovComposition
                 gTextBox.ReadOnly = false;
                 bTextBox.ReadOnly = false;
             }
+
+            
+
         }
 
         public void VisibleStripTools(bool visible)
@@ -140,6 +153,14 @@ namespace MironovComposition
             gTextBox.Visible = visible;
             bTextBox.Visible = visible;
             submitButton.Visible = visible;
+            XLabel.Visible = visible;
+            YLabel.Visible = visible;
+            TextBoxX.Visible = Visible;
+            TextBoxY.Visible = Visible;
+
+
+
+
         }
 
         public bool CheckData(Object Object)
@@ -150,8 +171,6 @@ namespace MironovComposition
                 MessageBox.Show("Данные введены не корректно!");
                 return false;
             }
-
-            
 
             if (!int.TryParse(RotateTextBox.Text, out rotate))
             {
@@ -184,6 +203,18 @@ namespace MironovComposition
             }
 
             if (!int.TryParse(bTextBox.Text, out B))
+            {
+                MessageBox.Show("Данные введены не корректно!");
+                return false;
+            }
+
+            if (!int.TryParse(TextBoxX.Text, out x))
+            {
+                MessageBox.Show("Данные введены не корректно!");
+                return false;
+            }
+
+            if (!int.TryParse(TextBoxY.Text, out y))
             {
                 MessageBox.Show("Данные введены не корректно!");
                 return false;

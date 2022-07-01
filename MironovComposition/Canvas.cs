@@ -113,14 +113,13 @@ namespace MironovComposition
             Matrix myMatrix = new Matrix();
             myMatrix.RotateAt(rotate, new PointF(x + size / 2, y + size / 2));
 
-
             if (rotate == 0 || rotate == 90 || rotate == 180 || rotate == 270 || rotate == 360)
             {
                 PointF[] ArrayShadow =
                 {
                     new Point(x, y), new Point(x + size, y),
                     new Point(x + size, y), new Point(x + size, y + size), new Point(x + size - 30, bound.Bottom - 3),
-                    new Point(x - 200, bound.Bottom - 3), new Point(x, y)
+                    new Point(x - 250, bound.Bottom - 3), new Point(x, y)
                 };
 
                 g.FillPolygon(brushShadow, ArrayShadow);
@@ -128,6 +127,8 @@ namespace MironovComposition
             
             g.Transform = myMatrix;
             g.FillPolygon(brush, ArrayCube);
+            g.DrawPolygon(new Pen(Color.Black, 2), ArrayCube);
+
         }
 
         protected void DrawTriangle(Graphics g, Object Object)
@@ -155,6 +156,8 @@ namespace MironovComposition
             myMatrix.RotateAt(rotate, new PointF(x, y + size / 2));
             g.Transform = myMatrix;
             g.FillPolygon(brush, myArray);
+            g.DrawPolygon(new Pen(Color.Black, 2), myArray);
+
         }
 
 
@@ -173,6 +176,8 @@ namespace MironovComposition
             };
 
             g.FillPolygon(new SolidBrush(Color.White), myArray);
+            g.DrawPolygon(new Pen(Color.Black, 2), myArray);
+
         }
 
 
@@ -180,8 +185,8 @@ namespace MironovComposition
         {
             g = CreateGraphics();
 
-            x = 850;
-            y = bound.Height - 4;
+            x = Object.X;
+            y = Object.Y;
 
             opacity = Object.Opacity;
             R = Object.ColorR;
@@ -259,8 +264,8 @@ namespace MironovComposition
 
             PointF[] Enable =
             {
-                new Point(915, 443),new Point(925, 428),
-                new Point(905, 428),
+                new Point(x + 65, y - 26),new Point(x + 75, y - 36),
+                new Point(x + 55, y - 36),
             };
             SolidBrush brushLightLamp;
 

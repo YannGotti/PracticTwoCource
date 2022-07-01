@@ -37,8 +37,8 @@
             this.textBox = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.progressBar1 = new MironovProgressBar.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
+            this.progressBar1 = new MironovProgressBar.ProgressBar();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,6 +96,7 @@
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(100, 20);
             this.textBox.TabIndex = 4;
+            this.textBox.Text = "10";
             // 
             // button3
             // 
@@ -112,16 +113,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(10, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 26);
+            this.label2.Size = new System.Drawing.Size(56, 26);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Скорость \r\nпрогресса: \r\n";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(10, 60);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(202, 248);
-            this.progressBar1.TabIndex = 1;
+            this.label2.Text = "Интервал\r\nтаймера: \r\n";
             // 
             // label4
             // 
@@ -131,6 +125,13 @@
             this.label4.Size = new System.Drawing.Size(117, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Скорость прогресса: ";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(10, 60);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(202, 248);
+            this.progressBar1.TabIndex = 1;
             // 
             // MainForm
             // 

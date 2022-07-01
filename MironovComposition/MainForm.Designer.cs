@@ -51,6 +51,10 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.ObjectsComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.XLabel = new System.Windows.Forms.ToolStripLabel();
+            this.TextBoxX = new System.Windows.Forms.ToolStripTextBox();
+            this.YLabel = new System.Windows.Forms.ToolStripLabel();
+            this.TextBoxY = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.SizeTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
@@ -166,7 +170,8 @@
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "toolStripButton2";
+            this.toolStripButton2.Text = "Запустить";
+            this.toolStripButton2.Click += new System.EventHandler(this.StartAnimation);
             // 
             // toolStripButton3
             // 
@@ -175,7 +180,8 @@
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "toolStripButton3";
+            this.toolStripButton3.Text = "Остановить";
+            this.toolStripButton3.Click += new System.EventHandler(this.StopAnimation);
             // 
             // toolStripButton4
             // 
@@ -242,6 +248,10 @@
             this.toolStripSeparator3,
             this.toolStripLabel1,
             this.ObjectsComboBox,
+            this.XLabel,
+            this.TextBoxX,
+            this.YLabel,
+            this.TextBoxY,
             this.toolStripLabel2,
             this.SizeTextBox,
             this.toolStripLabel3,
@@ -256,6 +266,28 @@
             this.toolStrip1.Size = new System.Drawing.Size(1106, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // XLabel
+            // 
+            this.XLabel.Name = "XLabel";
+            this.XLabel.Size = new System.Drawing.Size(17, 22);
+            this.XLabel.Text = "X:";
+            // 
+            // TextBoxX
+            // 
+            this.TextBoxX.Name = "TextBoxX";
+            this.TextBoxX.Size = new System.Drawing.Size(50, 25);
+            // 
+            // YLabel
+            // 
+            this.YLabel.Name = "YLabel";
+            this.YLabel.Size = new System.Drawing.Size(17, 22);
+            this.YLabel.Text = "Y:";
+            // 
+            // TextBoxY
+            // 
+            this.TextBoxY.Name = "TextBoxY";
+            this.TextBoxY.Size = new System.Drawing.Size(50, 25);
             // 
             // toolStripLabel2
             // 
@@ -407,6 +439,10 @@
         private System.Windows.Forms.ToolStripTextBox bTextBox;
         private Canvas canvas1;
         private System.Windows.Forms.ToolStripButton submitButton;
+        private System.Windows.Forms.ToolStripLabel XLabel;
+        private System.Windows.Forms.ToolStripTextBox TextBoxY;
+        private System.Windows.Forms.ToolStripLabel YLabel;
+        private System.Windows.Forms.ToolStripTextBox TextBoxX;
     }
 }
 
