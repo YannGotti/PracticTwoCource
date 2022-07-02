@@ -16,17 +16,16 @@ namespace MironovComposition
         List<Object> objectsList;
         int x = 0;
         int y = 0;
-        double opacity = 0;
         int size = 0;
         int R = 0;
         int B = 0;
         int G = 0;
         int rotate = 0;
-        bool enable = false;
 
         public Canvas()
         {
             InitializeComponent();
+            DoubleBuffered = true;
             objectsList = null;
         }
 
@@ -39,7 +38,6 @@ namespace MironovComposition
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
             // Заполнение фона
             e.Graphics.FillRectangle(Brushes.White, ClientRectangle);
             e.Graphics.DrawLine(new Pen(Color.Black, 6), new Point(ClientRectangle.Left, ClientRectangle.Bottom),
@@ -61,13 +59,13 @@ namespace MironovComposition
                             DrawLamp(g, o, bound);
                             break;
                         case ObjectsTypes.Cube:
-                            DrawCube(g, o, bound);
+                            DrawCube(g, o);
                             break;
                         case ObjectsTypes.Triangle:
-                            DrawTriangle(g, o, bound);
+                            DrawTriangle(g, o);
                             break;
                         case ObjectsTypes.Springboard:
-                            DrawSpringboard(g, o, bound);
+                            DrawSpringboard(g, o);
                             break;
                         default:
                             break;
@@ -87,64 +85,81 @@ namespace MironovComposition
                 g.DrawString(text, Font, Brushes.Black, rect, format);
             }
         }
-        protected void DrawCube(Graphics g, Object Object, Rectangle bound)
+        protected void DrawCube(Graphics g, Object Object)
         {
-            g = CreateGraphics();
-            SolidBrush brush = new SolidBrush(Color.FromArgb(R, G, B));
-            SolidBrush brushShadow = new SolidBrush(Color.FromArgb(30, 0, 0, 0));
-            List<Point[]> points = Object.DrawCube();
-            enable = Object.Enabled;
-            g.FillPolygon(brush, points[0]);
-
-            if (enable)
-                g.FillPolygon(brushShadow, points[1]);
-            else
-                g.DrawPolygon(new Pen(Color.Black, 2), points[0]);
-        }
-
-        protected void DrawTriangle(Graphics g, Object Object, Rectangle bound)
-        {
-            g = CreateGraphics();
-
             x = Object.X;
             y = Object.Y;
             size = Object.Size;
-            opacity = Object.Opacity;
             rotate = Object.Rotate;
             R = Object.ColorR;
             B = Object.ColorB;
             G = Object.ColorG;
 
-            bool enable = Object.Enabled;
+            SolidBrush brush = new SolidBrush(Color.FromArgb(R, G, B));
+            SolidBrush brushShadow = new SolidBrush(Color.FromArgb(30, 0, 0, 0));
+
+            Point[] ArrayCube =
+            {
+                new Point(x, y), new Point(x + size, y), new Point(x + size,y + size),
+                new Point(x, y + size), new Point(x, y)
+            };
+
+            Matrix myMatrix = new Matrix();
+            myMatrix.RotateAt(-rotate, new Point(x + size / 2, y + size / 2));
+            myMatrix.TransformPoints(ArrayCube);
+            g.FillPolygon(brush, ArrayCube);
+
+            if (Object.Enabled)
+            {
+                Point[] ArrayShadow =
+                {
+                    ArrayCube[0], ArrayCube[3], ArrayCube[2],
+                    new Point(ArrayCube[2].X - 30, 472 - 3),new Point(x - 300, 472 - 3),
+                };
+
+                g.FillPolygon(brushShadow, ArrayShadow);
+
+            }
+            else
+            {
+                g.DrawPolygon(new Pen(Color.Black, 2), ArrayCube);
+            }
+
+
+        }
+
+        protected void DrawTriangle(Graphics g, Object Object)
+        {
+            x = Object.X;
+            y = Object.Y;
+            size = Object.Size;
+            rotate = Object.Rotate;
+            R = Object.ColorR;
+            B = Object.ColorB;
+            G = Object.ColorG;
+
 
             SolidBrush brush = new SolidBrush(Color.FromArgb(R, G, B));
             SolidBrush brushShadow = new SolidBrush(Color.FromArgb(30, 0, 0, 0));
 
             Point[] myArray =
             {
-                new Point(x, y),new Point(x + size / 2, y + size),
-                new Point(x + size / 2, y + size),new Point(x - size / 2, y + size),
+                new Point(x, y), new Point(x + size / 2, y + size), new Point(x - size / 2, y + size),
 
             };
 
             Matrix myMatrix = new Matrix();
-            myMatrix.RotateAt(-rotate, new Point(x, y + size / 2));
+            myMatrix.RotateAt(-rotate, new PointF(x, y + size / 2));
             myMatrix.TransformPoints(myArray);
-
-
             g.FillPolygon(brush, myArray);
 
-
-            if (enable)
+            if (Object.Enabled)
             {
-                
                 PointF[] ArrayShadow =
                 {
-                    myArray[0],myArray[1],
-                    new Point(myArray[2].X - 30, bound.Bottom - 3),new Point(x - 400, bound.Bottom - 3),
-
+                    myArray[0],myArray[2], myArray[1],
+                    new Point(myArray[2].X, 472 - 3),new Point(x - 500, 472 - 3),
                 };
-
                 g.FillPolygon(brushShadow, ArrayShadow);
             }
             else
@@ -152,23 +167,19 @@ namespace MironovComposition
                 g.DrawPolygon(new Pen(Color.Black, 2), myArray);
             }
 
+
+
         }
 
 
-        protected void DrawSpringboard(Graphics g, Object Object, Rectangle bound)
+        protected void DrawSpringboard(Graphics g, Object Object)
         {
-            g = CreateGraphics();
-
-            
-
             x = Object.X;
             y = Object.Y;
             rotate = Object.Rotate;
             R = Object.ColorR;
             B = Object.ColorB;
             G = Object.ColorG;
-
-            bool enable = Object.Enabled;
 
             int width = size = Object.Size;
             int height = width - 50;
@@ -180,14 +191,12 @@ namespace MironovComposition
             };
 
             Matrix myMatrix = new Matrix();
-            myMatrix.RotateAt(rotate, new PointF(x + width / 2, y + height / 2));
+            myMatrix.RotateAt(-rotate, new PointF(x + width / 2, y + height / 2));
             g.Transform = myMatrix;
             g.FillPolygon(new SolidBrush(Color.FromArgb(R, B, G)), myArray);
 
-            if (!enable)
-            {
+            if (!Object.Enabled)
                 g.DrawPolygon(new Pen(Color.Black, 2), myArray);
-            }
 
 
         }
@@ -195,12 +204,9 @@ namespace MironovComposition
 
         protected void DrawLamp(Graphics g, Object Object, Rectangle bound)
         {
-            g = CreateGraphics();
-
             x = Object.X;
             y = Object.Y;
 
-            opacity = Object.Opacity;
             R = Object.ColorR;
             B = Object.ColorB;
             G = Object.ColorG;
@@ -211,7 +217,7 @@ namespace MironovComposition
             Pen Pen = new Pen(Color.Black, 3);
             Pen PenEnable = new Pen(Color.Black, 4);
             Pen PenCircle = new Pen(Color.Black, 3);
-            SolidBrush brushLight = new SolidBrush(Color.FromArgb(90, 255, 180, 63));
+            SolidBrush brushLight = new SolidBrush(Color.FromArgb(30, 255, 180, 63));
 
 
             Rectangle circle = new Rectangle(x + 180, y - 255, 60, 60);

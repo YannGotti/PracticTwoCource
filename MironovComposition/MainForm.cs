@@ -14,7 +14,6 @@ namespace MironovComposition
     {
         List<Object> objects;
         int size = 0;
-        double opacity = 0;
         int rotate = 0;
         int R = 0;
         int G = 0;
@@ -37,13 +36,13 @@ namespace MironovComposition
         public MainForm()
         {
             InitializeComponent();
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             VisibleStripTools(false);
 
             objects = new List<Object>();
-            objects.Add(Lamp);
-            objects.Add(Triangle);
             objects.Add(Cube);
+            objects.Add(Triangle);
+            objects.Add(Lamp);
             objects.Add(Springboard);
 
             canvas1.Objects = objects;
@@ -125,7 +124,6 @@ namespace MironovComposition
                 Object.X = x;
                 Object.Y = y;
                 Object.Rotate = rotate;
-                Object.Opacity = opacity;
                 Object.ColorR = R;
                 Object.ColorG = G;
                 Object.ColorB = B;
@@ -341,7 +339,7 @@ namespace MironovComposition
                 Cube.X++;
             }
             value++;
-            second = value / 1000;
+            second = value / 100;
             secondLabel.Text = $"Секунда: {second}";
             valueLabel.Text = $"Тик: {value}";
             canvas1.Invalidate();

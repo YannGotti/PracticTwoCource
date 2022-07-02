@@ -24,7 +24,6 @@ namespace MironovComposition
         int x;
         int y;
         int size;
-        double opacity;
         int rotate;
         int R;
         int B;
@@ -33,14 +32,6 @@ namespace MironovComposition
 
         public Object()
         {
-            name = string.Empty;
-            x = 0;
-            y = 0;
-            size = 100;
-            rotate = 0;
-            R = 255;
-            G = 255;
-            B = 255;
         }
 
         public Object(string name, int x, int y)
@@ -51,9 +42,9 @@ namespace MironovComposition
 
             size = 100;
             rotate = 0;
-            R = 252;
-            G = 252;
-            B = 252;
+            R = 123;
+            G = 123;
+            B = 123;
             enable = false;
         }
 
@@ -119,22 +110,6 @@ namespace MironovComposition
             get
             {
                 return rotate;
-            }
-        }
-
-
-        public double Opacity
-        {
-            set
-            {
-                if (value < 0)
-                    opacity = 0;
-                else
-                    opacity = value;
-            }
-            get
-            {
-                return opacity;
             }
         }
 
@@ -382,34 +357,6 @@ namespace MironovComposition
 
             return v;
         }
-
-        public List<Point[]> DrawCube()
-        {
-            List<Point[]> points = new List<Point[]>();
-            
-
-            Point[] ArrayCube =
-            {
-                new Point(X, Y), new Point(X + Size, Y),
-                new Point(X + Size,Y + Size),new Point(X, Y + Size), new Point(X, Y)
-            };
-
-            Matrix myMatrix = new Matrix();
-            myMatrix.RotateAt(-rotate, new Point(x + size / 2, y + size / 2));
-            myMatrix.TransformPoints(ArrayCube);
-
-            Point[] ArrayShadow =
-                {
-                    ArrayCube[0], ArrayCube[1], ArrayCube[2],
-                    new Point(ArrayCube[2].X - 30, 472 - 3),new Point(x - 300, 472 - 3),
-                };
-            points.Add(ArrayCube);
-            points.Add(ArrayShadow);
-
-            return points;
-            
-        }
-
 
     }
 
