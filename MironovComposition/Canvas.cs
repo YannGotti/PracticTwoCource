@@ -93,11 +93,18 @@ namespace MironovComposition
             R = Object.ColorR;
             B = Object.ColorB;
             G = Object.ColorG;
+            rotate = Object.Rotate;
+            x = Object.X;
+            y = Object.Y;
+            size = Object.Size;
 
             SolidBrush brush = new SolidBrush(Color.FromArgb(R, G, B));
             SolidBrush brushShadow = new SolidBrush(Color.FromArgb(30,0, 0, 0));
 
-            PointF[] ArrayCube = Object.NewPoints;
+            Point[] ArrayCube = Object.NewPoints;
+            Point[] rotatePoints = Matrices.rotateMatrix(ArrayCube, rotate, x, y, size);
+
+            MessageBox.Show(Object.NewPoints[0].ToString());
 
             /*if (rotate == 0 || rotate == 90 || rotate == 180 || rotate == 270 || rotate == 360)
             {
@@ -111,10 +118,9 @@ namespace MironovComposition
                 g.FillPolygon(brushShadow, ArrayShadow);
             }*/
 
-            g.Transform = Object.Matrix();
-
-            g.FillPolygon(brush, ArrayCube);
-            g.DrawPolygon(new Pen(Color.Black, 2), ArrayCube);
+            //g.FillPolygon(brush, rotatePoints);
+            g.DrawPolygon(new Pen(Color.Black, 2), rotatePoints);
+            g.DrawPolygon(new Pen(Color.Black, 2), Object.NewPoints);
 
         }
 
@@ -132,8 +138,7 @@ namespace MironovComposition
             G = Object.ColorG;
 
             SolidBrush brush = new SolidBrush(Color.FromArgb(R, G, B));
-            PointF[] myArray = Object.NewPoints;
-
+            Point[] myArray = Object.NewPoints;
 
             Matrix myMatrix = new Matrix();
             myMatrix.RotateAt(rotate, new PointF(x, y + size / 2));

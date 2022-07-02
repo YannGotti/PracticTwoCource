@@ -31,19 +31,12 @@ namespace MironovComposition
 
         bool enable;
 
-        PointF[] newPoints;
-        PointF[] resultPoints;
+        Point[] newPoints;
+        Point[] resultPoints;
 
         public Object()
         {
-            name = string.Empty;
-            x = 0;
-            y = 0;
-            size = 100;
-            rotate = 0;
-            R = 255;
-            G = 255;
-            B = 255;
+            
         }
 
         public Object(string name, int x, int y)
@@ -59,16 +52,8 @@ namespace MironovComposition
             G = 252;
             B = 252;
             enable = false;
+
         }
-
-        public Matrix Matrix()
-        {
-            Matrix Matrix = new Matrix();
-            Matrix.RotateAt(Rotate, new PointF(x + Size / 2, y + Size / 2));
-
-            return Matrix;
-        }
-
 
         public string Name
         {
@@ -76,7 +61,7 @@ namespace MironovComposition
             get { return name; }
         }
 
-        public PointF[] NewPoints
+        public Point[] NewPoints
         {
             set
             {
@@ -85,7 +70,7 @@ namespace MironovComposition
             get { return newPoints; }
         }
 
-        public PointF[] ResultPoints
+        public Point[] ResultPoints
         {
             set { resultPoints = value; }
             get { return resultPoints; }
@@ -254,7 +239,7 @@ namespace MironovComposition
         public CubeObject(string name, int x, int y)
             : base(name, x, y)
         {
-            NewPoints = new PointF[]
+            NewPoints = new Point[]
             {
                 new Point(x, y), new Point(x + Size, y),
                 new Point(x + Size, y), new Point(x + Size,y + Size),
@@ -284,7 +269,7 @@ namespace MironovComposition
         public TriangleObject(string name, int x, int y)
             : base(name, x, y)
         {
-            NewPoints = new PointF[]
+            NewPoints = new Point[]
             {
                 new Point(x, y),new Point(x + Size / 2, y + Size),
                 new Point(x + Size / 2, y + Size),new Point(x - Size / 2, y + Size),
@@ -312,7 +297,7 @@ namespace MironovComposition
         public SpringboardObject(string name, int x, int y)
             : base(name, x, y)
         {
-            NewPoints = new PointF[]
+            NewPoints = new Point[]
             {
                 new Point(x, y),new Point(x + 150, y),
                 new Point(x + 150, 470),new Point(x - 250, 470)
