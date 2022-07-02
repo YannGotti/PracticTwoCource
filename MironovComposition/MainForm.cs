@@ -321,6 +321,8 @@ namespace MironovComposition
 
         private void loadObjects_Click(object sender, EventArgs e)
         {
+            triangle_id = 0;
+            cube_id = 0;
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "Текстовый файл *.txt|*.txt|Все файлы|*.*";
             if (dlg.ShowDialog() == DialogResult.OK)
