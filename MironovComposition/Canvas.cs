@@ -23,6 +23,8 @@ namespace MironovComposition
         int G = 0;
         int rotate = 0;
 
+        Object Object;
+
         public Canvas()
         {
             InitializeComponent();
@@ -51,26 +53,42 @@ namespace MironovComposition
         {
             if (objectsList != null && objectsList.Count > 0)
             {
-                for (int i = 0; i < objectsList.Count; i++)
+                foreach (Object o in objectsList)
                 {
-                    Object o = objectsList[i];
                     switch (o.GetObjectType())
                     {
                         case ObjectsTypes.Lamp:
-                            DrawLamp(g, o, bound);
+                            if (Object != o)
+                            {
+                                Object = o;
+                                DrawLamp(g, o, bound);
+                            }
                             break;
                         case ObjectsTypes.Cube:
-                            DrawCube(g, o, bound);
+                            if (Object != o)
+                            {
+                                Object = o;
+                                DrawCube(g, o, bound);
+                            }
                             break;
                         case ObjectsTypes.Triangle:
-                            DrawTriangle(g, o, bound);
+                            if (Object == o)
+                            {
+                                Object = o;
+                                DrawTriangle(g, o, bound);
+                            }
                             break;
                         case ObjectsTypes.Springboard:
-                            DrawSpringboard(g, o, bound);
+                            if (Object == o)
+                            {
+                                Object = o;
+                                DrawSpringboard(g, o, bound);
+                            }
                             break;
                         default:
                             break;
                     }
+
                 }
             }
             else
