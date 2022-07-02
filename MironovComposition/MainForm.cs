@@ -23,39 +23,60 @@ namespace MironovComposition
         int x = 0;
         int y = 0;
 
+        bool AnimationStart;
+
         LampObject Lamp = new LampObject("Лампа", 850, 469);
-        TriangleObject triangle = new TriangleObject("Треугольник", 720, 275);
-        CubeObject cube = new CubeObject("Куб", 250, 370);
+        TriangleObject Triangle = new TriangleObject("Треугольник", 720, 275);
+        CubeObject Cube = new CubeObject("Куб", 250, 370);
         SpringboardObject Springboard = new SpringboardObject("Трамплин", 650, 375);
+
 
         public MainForm()
         {
             InitializeComponent();
             VisibleStripTools(false);
+
             objects = new List<Object>();
             objects.Add(Lamp);
-            objects.Add(triangle);
-            objects.Add(cube);
+            objects.Add(Triangle);
+            objects.Add(Cube);
             objects.Add(Springboard);
 
-
             canvas1.Objects = objects;
-            FillListBox(objects);
+            FillListBox();
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        protected void FillListBox(List<Object> objects)
+        protected void FillListBox()
         {
             ObjectsComboBox.Items.Clear();
 
             foreach (Object o in objects)
-                if (o.GetObjectType() != ObjectsTypes.Springboard)
-                    ObjectsComboBox.Items.Add(o.Name);
+                ObjectsComboBox.Items.Add(o.Name);
+        }
+
+        private void deleteObject_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int index = ObjectsComboBox.SelectedIndex;
+                Object Object = objects[index];
+                
+                DialogResult res = MessageBox.Show("Желаете удалить выбранный объект?", "Удаление объекта",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (res == DialogResult.Yes)
+                {
+                    objects.Remove(Object);
+                    FillListBox();
+                    canvas1.Invalidate();
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Вы не выбрали объект!");
+            }
+            
         }
 
         private void submitButton_Click(object sender, EventArgs e)
@@ -118,6 +139,12 @@ namespace MironovComposition
 
             TextBoxY.Text = Object.Y.ToString();
             TextBoxX.Text = Object.X.ToString();
+            SizeTextBox.Text = Object.Size.ToString();
+            RotateTextBox.Text = Object.Rotate.ToString();
+            rTextBox.Text = Object.ColorR.ToString();
+            gTextBox.Text = Object.ColorG.ToString();
+            bTextBox.Text = Object.ColorB.ToString();
+
 
             if (Object.GetObjectType() == ObjectsTypes.Lamp)
             {
@@ -157,10 +184,6 @@ namespace MironovComposition
             YLabel.Visible = visible;
             TextBoxX.Visible = Visible;
             TextBoxY.Visible = Visible;
-
-
-
-
         }
 
         public bool CheckData(Object Object)
@@ -225,13 +248,90 @@ namespace MironovComposition
 
         private void StartAnimation(object sender, EventArgs e)
         {
-            Lamp.Enabled = true;
+            AnimationStart = true;
+
+            foreach (Object Object in objects)
+            {
+                Object.Enabled = AnimationStart;
+            }
+
             canvas1.Invalidate();
         }
 
         private void StopAnimation(object sender, EventArgs e)
         {
-            Lamp.Enabled = false;
+            AnimationStart = false;
+            foreach (Object Object in objects)
+            {
+                Object.Enabled = AnimationStart;
+            }
+
+            canvas1.Invalidate();
+        }
+
+        string name_cube = "Куб_";
+        int cube_id = 0;
+        private void addCube_Click(object sender, EventArgs e)
+        {
+            string name = name_cube;
+            Random rand = new Random();
+            cube_id++;
+            CubeObject cube_add = new CubeObject(name.Insert(4, cube_id.ToString()), 0, 0);
+            if (AnimationStart)
+                cube_add.Enabled = true;
+            cube_add.ColorR = rand.Next(0, 255);
+            cube_add.ColorG = rand.Next(0, 255);
+            cube_add.ColorB = rand.Next(0, 255);
+
+            objects.Add(cube_add);
+            FillListBox();
+            canvas1.Invalidate();
+        }
+
+        string name_triangle = "Треугольник_";
+        int triangle_id = 0;
+        private void addTriangle_Click(object sender, EventArgs e)
+        {
+            Random rand = new Random();
+            string name = name_triangle;
+            triangle_id++;
+            TriangleObject triangle_add = new TriangleObject(name.Insert(12, triangle_id.ToString()), 50, 0);
+            if (AnimationStart)
+                triangle_add.Enabled = true;
+
+            triangle_add.ColorR = rand.Next(0, 255);
+            triangle_add.ColorG = rand.Next(0, 255);
+            triangle_add.ColorB = rand.Next(0, 255);
+
+            objects.Add(triangle_add);
+            FillListBox();
+            canvas1.Invalidate();
+        }
+
+        private void saveObjects_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Текстовый файл *.txt|*.txt|Все файлы|*.*";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                // Сохранить файл
+                Object.SaveData(dlg.FileName, objects);
+            }
+        }
+
+        private void loadObjects_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Текстовый файл *.txt|*.txt|Все файлы|*.*";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                // Открыть файл
+                if (Object.ReadData(dlg.FileName, objects))
+                {
+                    FillListBox();
+                }
+                // заполнить список
+            }
             canvas1.Invalidate();
         }
     }
