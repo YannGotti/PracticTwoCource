@@ -22,6 +22,7 @@ namespace MironovComposition
         int B = 0;
         int G = 0;
         int rotate = 0;
+        bool enable = false;
 
         public Canvas()
         {
@@ -89,57 +90,16 @@ namespace MironovComposition
         protected void DrawCube(Graphics g, Object Object, Rectangle bound)
         {
             g = CreateGraphics();
-
-            x = Object.X;
-            y = Object.Y;
-            size = Object.Size;
-            opacity = Object.Opacity;
-            rotate = Object.Rotate;
-            R = Object.ColorR;
-            B = Object.ColorB;
-            G = Object.ColorG;
-
-            bool enable = Object.Enabled;
-
             SolidBrush brush = new SolidBrush(Color.FromArgb(R, G, B));
-            SolidBrush brushShadow = new SolidBrush(Color.FromArgb(30,0, 0, 0));
-
-            PointF[] ArrayCube =
-            {
-                new Point(x, y), new Point(x + size, y),
-                new Point(x + size, y), new Point(x + size,y + size),
-                new Point(x + size, y + size), new Point(x, y + size),
-                new Point(x, y + size), new Point(x, y)
-            };
-
-            Matrix myMatrix = new Matrix();
-            myMatrix.RotateAt(rotate, new PointF(x + size / 2, y + size / 2));
-            g.Transform = myMatrix;
-
-            g.FillPolygon(brush, ArrayCube);
-
+            SolidBrush brushShadow = new SolidBrush(Color.FromArgb(30, 0, 0, 0));
+            List<Point[]> points = Object.DrawCube();
+            enable = Object.Enabled;
+            g.FillPolygon(brush, points[0]);
 
             if (enable)
-            {
-                if (rotate == 0 || rotate == 90 || rotate == 180 || rotate == 270 || rotate == 360)
-                {
-                    PointF[] ArrayShadow =
-                    {
-                    new Point(x, y), new Point(x + size, y),
-                    new Point(x + size, y), new Point(x + size, y + size), new Point(x + size - 30, bound.Bottom - 3),
-                    new Point(x - 250, bound.Bottom - 3), new Point(x, y)
-                };
-
-                    g.FillPolygon(brushShadow, ArrayShadow);
-                }
-            }
+                g.FillPolygon(brushShadow, points[1]);
             else
-            {
-                g.DrawPolygon(new Pen(Color.Black, 2), ArrayCube);
-            }
-
-
-
+                g.DrawPolygon(new Pen(Color.Black, 2), points[0]);
         }
 
         protected void DrawTriangle(Graphics g, Object Object, Rectangle bound)
@@ -160,7 +120,7 @@ namespace MironovComposition
             SolidBrush brush = new SolidBrush(Color.FromArgb(R, G, B));
             SolidBrush brushShadow = new SolidBrush(Color.FromArgb(30, 0, 0, 0));
 
-            PointF[] myArray =
+            Point[] myArray =
             {
                 new Point(x, y),new Point(x + size / 2, y + size),
                 new Point(x + size / 2, y + size),new Point(x - size / 2, y + size),
@@ -168,24 +128,24 @@ namespace MironovComposition
             };
 
             Matrix myMatrix = new Matrix();
-            myMatrix.RotateAt(rotate, new PointF(x, y + size / 2));
-            g.Transform = myMatrix;
+            myMatrix.RotateAt(-rotate, new Point(x, y + size / 2));
+            myMatrix.TransformPoints(myArray);
+
 
             g.FillPolygon(brush, myArray);
 
 
             if (enable)
             {
-                if (rotate == 0 || rotate == 90 || rotate == 180 || rotate == 270 || rotate == 360)
+                
+                PointF[] ArrayShadow =
                 {
-                    PointF[] ArrayShadow =
-                    {
-                    new Point(x, y),new Point(x + size / 2, y + size),
-                    new Point(x + size / 2 - 30, bound.Bottom - 3),new Point(x - 400, bound.Bottom - 3)
+                    myArray[0],myArray[1],
+                    new Point(myArray[2].X - 30, bound.Bottom - 3),new Point(x - 400, bound.Bottom - 3),
+
                 };
 
-                    g.FillPolygon(brushShadow, ArrayShadow);
-                }
+                g.FillPolygon(brushShadow, ArrayShadow);
             }
             else
             {
@@ -355,13 +315,7 @@ namespace MironovComposition
             g.DrawLines(Pen, LampLines3);
             g.DrawLines(Pen, LampLines4);
             g.DrawLines(Pen, LampHead);
-
-            
-
-
         }
-
-        
 
         private void Canvas_MouseClick(object sender, MouseEventArgs e)
         {

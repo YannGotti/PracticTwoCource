@@ -28,16 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.анимацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.запуститьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.остановитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.параметрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadParamsAnimation = new System.Windows.Forms.ToolStripMenuItem();
             this.фигурыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateObject = new System.Windows.Forms.ToolStripMenuItem();
             this.addCube = new System.Windows.Forms.ToolStripMenuItem();
             this.addTriangle = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadObjects = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -66,9 +70,9 @@
             this.submitButton = new System.Windows.Forms.ToolStripButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.loadParamsAnimation = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadObjects = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveObjects = new System.Windows.Forms.ToolStripMenuItem();
+            this.valueLabel = new System.Windows.Forms.Label();
+            this.secondLabel = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.canvas1 = new MironovComposition.Canvas();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -117,6 +121,12 @@
             this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.параметрыToolStripMenuItem.Text = "Параметры";
             // 
+            // loadParamsAnimation
+            // 
+            this.loadParamsAnimation.Name = "loadParamsAnimation";
+            this.loadParamsAnimation.Size = new System.Drawing.Size(193, 22);
+            this.loadParamsAnimation.Text = "Загрузить параметры";
+            // 
             // фигурыToolStripMenuItem
             // 
             this.фигурыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -133,7 +143,7 @@
             this.addCube,
             this.addTriangle});
             this.CreateObject.Name = "CreateObject";
-            this.CreateObject.Size = new System.Drawing.Size(180, 22);
+            this.CreateObject.Size = new System.Drawing.Size(133, 22);
             this.CreateObject.Text = "Создать";
             // 
             // addCube
@@ -149,6 +159,20 @@
             this.addTriangle.Size = new System.Drawing.Size(144, 22);
             this.addTriangle.Text = "Треугольник";
             this.addTriangle.Click += new System.EventHandler(this.addTriangle_Click);
+            // 
+            // loadObjects
+            // 
+            this.loadObjects.Name = "loadObjects";
+            this.loadObjects.Size = new System.Drawing.Size(133, 22);
+            this.loadObjects.Text = "Загрузить";
+            this.loadObjects.Click += new System.EventHandler(this.loadObjects_Click);
+            // 
+            // saveObjects
+            // 
+            this.saveObjects.Name = "saveObjects";
+            this.saveObjects.Size = new System.Drawing.Size(133, 22);
+            this.saveObjects.Text = "Сохранить";
+            this.saveObjects.Click += new System.EventHandler(this.saveObjects_Click);
             // 
             // toolStripButton1
             // 
@@ -375,6 +399,8 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.label1);
+            this.flowLayoutPanel1.Controls.Add(this.valueLabel);
+            this.flowLayoutPanel1.Controls.Add(this.secondLabel);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 522);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -391,25 +417,28 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Скорость анимации: ";
             // 
-            // loadParamsAnimation
+            // valueLabel
             // 
-            this.loadParamsAnimation.Name = "loadParamsAnimation";
-            this.loadParamsAnimation.Size = new System.Drawing.Size(193, 22);
-            this.loadParamsAnimation.Text = "Загрузить параметры";
+            this.valueLabel.AutoSize = true;
+            this.valueLabel.Location = new System.Drawing.Point(123, 0);
+            this.valueLabel.Name = "valueLabel";
+            this.valueLabel.Size = new System.Drawing.Size(29, 13);
+            this.valueLabel.TabIndex = 1;
+            this.valueLabel.Text = "Тик:";
             // 
-            // loadObjects
+            // secondLabel
             // 
-            this.loadObjects.Name = "loadObjects";
-            this.loadObjects.Size = new System.Drawing.Size(180, 22);
-            this.loadObjects.Text = "Загрузить";
-            this.loadObjects.Click += new System.EventHandler(this.loadObjects_Click);
+            this.secondLabel.AutoSize = true;
+            this.secondLabel.Location = new System.Drawing.Point(158, 0);
+            this.secondLabel.Name = "secondLabel";
+            this.secondLabel.Size = new System.Drawing.Size(52, 13);
+            this.secondLabel.TabIndex = 2;
+            this.secondLabel.Text = "Секунда:";
             // 
-            // saveObjects
+            // timer1
             // 
-            this.saveObjects.Name = "saveObjects";
-            this.saveObjects.Size = new System.Drawing.Size(180, 22);
-            this.saveObjects.Text = "Сохранить";
-            this.saveObjects.Click += new System.EventHandler(this.saveObjects_Click);
+            this.timer1.Interval = 1;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // canvas1
             // 
@@ -487,6 +516,9 @@
         private System.Windows.Forms.ToolStripMenuItem loadParamsAnimation;
         private System.Windows.Forms.ToolStripMenuItem loadObjects;
         private System.Windows.Forms.ToolStripMenuItem saveObjects;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label valueLabel;
+        private System.Windows.Forms.Label secondLabel;
     }
 }
 

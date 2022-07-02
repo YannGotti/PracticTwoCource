@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -382,6 +383,32 @@ namespace MironovComposition
             return v;
         }
 
+        public List<Point[]> DrawCube()
+        {
+            List<Point[]> points = new List<Point[]>();
+            
+
+            Point[] ArrayCube =
+            {
+                new Point(X, Y), new Point(X + Size, Y),
+                new Point(X + Size,Y + Size),new Point(X, Y + Size), new Point(X, Y)
+            };
+
+            Matrix myMatrix = new Matrix();
+            myMatrix.RotateAt(-rotate, new Point(x + size / 2, y + size / 2));
+            myMatrix.TransformPoints(ArrayCube);
+
+            Point[] ArrayShadow =
+                {
+                    ArrayCube[0], ArrayCube[1], ArrayCube[2],
+                    new Point(ArrayCube[2].X - 30, 472 - 3),new Point(x - 300, 472 - 3),
+                };
+            points.Add(ArrayCube);
+            points.Add(ArrayShadow);
+
+            return points;
+            
+        }
 
 
     }

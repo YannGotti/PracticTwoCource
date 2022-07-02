@@ -25,15 +25,19 @@ namespace MironovComposition
 
         bool AnimationStart;
 
+        double value;
+        double second;
+
         LampObject Lamp = new LampObject("Лампа", 850, 469);
         TriangleObject Triangle = new TriangleObject("Треугольник", 720, 275);
-        CubeObject Cube = new CubeObject("Куб", 250, 370);
+        CubeObject Cube = new CubeObject("Куб", 0, 170);
         SpringboardObject Springboard = new SpringboardObject("Трамплин", 650, 375);
 
 
         public MainForm()
         {
             InitializeComponent();
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             VisibleStripTools(false);
 
             objects = new List<Object>();
@@ -120,8 +124,6 @@ namespace MironovComposition
 
                 Object.X = x;
                 Object.Y = y;
-
-
                 Object.Rotate = rotate;
                 Object.Opacity = opacity;
                 Object.ColorR = R;
@@ -152,10 +154,7 @@ namespace MironovComposition
                 rTextBox.ReadOnly = true;
                 gTextBox.ReadOnly = true;
                 bTextBox.ReadOnly = true;
-
                 RotateTextBox.Text = 90.ToString();
-
-
             }
             else
             {
@@ -164,9 +163,6 @@ namespace MironovComposition
                 gTextBox.ReadOnly = false;
                 bTextBox.ReadOnly = false;
             }
-
-            
-
         }
 
         public void VisibleStripTools(bool visible)
@@ -249,7 +245,7 @@ namespace MironovComposition
         private void StartAnimation(object sender, EventArgs e)
         {
             AnimationStart = true;
-
+            timer1.Enabled = true;
             foreach (Object Object in objects)
             {
                 Object.Enabled = AnimationStart;
@@ -261,6 +257,7 @@ namespace MironovComposition
         private void StopAnimation(object sender, EventArgs e)
         {
             AnimationStart = false;
+            timer1.Enabled = false;
             foreach (Object Object in objects)
             {
                 Object.Enabled = AnimationStart;
@@ -334,6 +331,19 @@ namespace MironovComposition
                 }
                 // заполнить список
             }
+            canvas1.Invalidate();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (second <= 30)
+            {
+                Cube.X++;
+            }
+            value++;
+            second = value / 1000;
+            secondLabel.Text = $"Секунда: {second}";
+            valueLabel.Text = $"Тик: {value}";
             canvas1.Invalidate();
         }
     }
