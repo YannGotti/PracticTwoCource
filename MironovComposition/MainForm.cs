@@ -32,7 +32,6 @@ namespace MironovComposition
         CubeObject Cube = new CubeObject("Куб", 0, 170);
         SpringboardObject Springboard = new SpringboardObject("Трамплин", 650, 375);
 
-
         public MainForm()
         {
             InitializeComponent();
@@ -86,7 +85,7 @@ namespace MironovComposition
         {
             int index = ObjectsComboBox.SelectedIndex;
             Object Object = objects[index];
-
+             
 
             if (CheckData(Object))
             {
@@ -338,6 +337,7 @@ namespace MironovComposition
             {
                 Cube.X++;
             }
+            
             value++;
             second = value / 100;
             secondLabel.Text = $"Секунда: {second}";
