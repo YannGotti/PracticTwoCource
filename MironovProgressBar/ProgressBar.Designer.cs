@@ -35,7 +35,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "ProgressBar";
-            this.Size = new System.Drawing.Size(150, 290);
+            this.Size = new System.Drawing.Size(140, 121);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ProgressBar_Paint);
             this.ResumeLayout(false);
 
