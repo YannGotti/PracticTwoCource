@@ -23,9 +23,13 @@ namespace MironovProgressBar
         int G = 0;
         int B = 50;
 
+        Label label;
+
+
         public ProgressBar()
         {
             InitializeComponent();
+
         }
 
         public double MaxValue
@@ -40,21 +44,21 @@ namespace MironovProgressBar
             get { return minValue; }
         }
 
-        public double CurrentValue
+        public double Value
         {
             set { currentValue = value; }
             get { return currentValue; }
         }
 
-
         private void ProgressBar_Paint(object sender, PaintEventArgs e)
         {
+
             Pen blackPen = new Pen(Color.Black, 3);
             int x = 0;
             bricksForStroke = 0;
             int y = 0;
             int width = 200;
-            int height = 245;
+            int height = 211;
 
             R = 250;
             G = 0;
@@ -68,8 +72,6 @@ namespace MironovProgressBar
 
         public void DrawCube(Graphics g, int x, int y, double section)
         {
-            
-
             for (int i = 1; i < section + 1; i++)
             {
                 if (R < 50)
@@ -116,7 +118,7 @@ namespace MironovProgressBar
                 g.DrawLine(Pen, point7, point8);
 
             
-                if (bricksForStroke < 5)
+                if (bricksForStroke < 4)
                 {
                     bricksForStroke++;
                     x += 40;
@@ -129,6 +131,6 @@ namespace MironovProgressBar
                 }
             }
         }
-        
+
     }
 }
