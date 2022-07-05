@@ -65,7 +65,7 @@ namespace MironovProgressBar
             B = 50;
 
             e.Graphics.DrawRectangle(blackPen, x, y, width, height);
-            section = (currentValue - minValue) / maxValue * 35;
+            section = (currentValue - minValue) / maxValue * 30;
             DrawCube(e.Graphics, 0, 176, section);
         }
         
