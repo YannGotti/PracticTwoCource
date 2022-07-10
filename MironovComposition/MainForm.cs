@@ -25,7 +25,7 @@ namespace MironovComposition
         double value;
         double second;
 
-        LampObject Lamp = new LampObject("Лампа", 850, 469);
+        Lamp Lamp = new Lamp("Лампа", 850, 469);
         Triangle Triangle = new Triangle("Треугольник", 720, 275);
         Square Cube = new Square("Квадрат", 50, 170);
         Springboard Springboard = new Springboard("Трамплин", 650, 53);
@@ -33,23 +33,20 @@ namespace MironovComposition
         public MainForm()
         {
             InitializeComponent();
-            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             VisibleStripTools(false);
-
             objects.Add(Cube);
             objects.Add(Springboard);
             objects.Add(Triangle);
             objects.Add(Lamp);
-            canvas1.Objects = objects;
             FillListBox();
         }
 
         protected void FillListBox()
         {
             ObjectsComboBox.Items.Clear();
-
             foreach (Object o in objects)
                 ObjectsComboBox.Items.Add(o.Name);
+            canvas1.Objects = objects;
         }
 
         private void deleteObject_Click(object sender, EventArgs e)
@@ -83,25 +80,10 @@ namespace MironovComposition
 
             if (CheckData(Object))
             {
-                if (Object.Size != size)
-                {
-                    if (Object.Size < size)
-                    {
-                        Object.X -= size / 12;
-                        Object.Y -= size / 12;
-                    }
-                    else
-                    {
-                        Object.X += size / 12;
-                        Object.Y += size / 12;
-                    }
-
-                    Object.Size = size;
-                    Object.ScaleX = size;
-                    Object.ScaleY = size;
-
-                }
-
+               
+                Object.Size = size;
+                Object.ScaleX = size;
+                Object.ScaleY = size;
                 Object.X = x;
                 Object.Y = y;
                 Object.Angle = rotate;
@@ -261,7 +243,7 @@ namespace MironovComposition
             cube_add.ColorG = rand.Next(0, 255);
             cube_add.ColorB = rand.Next(0, 255);
 
-            objects.Add(cube_add);
+            objects = objects.Prepend(cube_add).ToList();
             FillListBox();
             canvas1.Invalidate();
         }
@@ -281,7 +263,7 @@ namespace MironovComposition
             triangle_add.ColorG = rand.Next(0, 255);
             triangle_add.ColorB = rand.Next(0, 255);
 
-            objects.Add(triangle_add);
+            objects = objects.Prepend(triangle_add).ToList();
             FillListBox();
             canvas1.Invalidate();
         }

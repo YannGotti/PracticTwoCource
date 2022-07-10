@@ -442,7 +442,7 @@ namespace MironovComposition
                     v = s;
                     break;
                 case 4: 
-                    LampObject l = new LampObject(name, x, y);
+                    Lamp l = new Lamp(name, x, y);
                     l.Size = size;
                     l.Angle = angle;
                     l.ColorR = R;
@@ -456,53 +456,4 @@ namespace MironovComposition
         }
 
     }
-
-   
-    public class SpringboardObject : Object
-    {
-
-        public SpringboardObject()
-            : base()
-        {
-
-        }
-
-        public SpringboardObject(string name, int x, int y)
-            : base(name, x, y)
-        {
-            Size = 150;
-            Enabled = false;
-        }
-
-        public override ObjectsTypes GetObjectType()
-        {
-            // воздушный транспорт
-            return ObjectsTypes.Springboard;
-        }
-
-    }
-
-    public class LampObject : Object
-    {
-        public LampObject()
-            : base()
-        {
-
-        }
-
-        public LampObject(string name, int x, int y)
-            : base(name, x, y)
-        {
-            Angle = 110;
-            Enabled = false;
-        }
-
-        public override ObjectsTypes GetObjectType()
-        {
-            // воздушный транспорт
-            return ObjectsTypes.Lamp;
-        }
-
-    }
-
 }
