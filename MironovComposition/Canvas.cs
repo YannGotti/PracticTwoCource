@@ -29,7 +29,6 @@ namespace MironovComposition
             objectsList = null;
         }
 
-
         public List<Object> Objects
         {
             set { objectsList = value; }
