@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.анимацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.запуститьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,19 +41,11 @@
             this.addTriangle = new System.Windows.Forms.ToolStripMenuItem();
             this.loadObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.saveObjects = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.addCubeButton = new System.Windows.Forms.ToolStripButton();
-            this.addTriangleButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.ObjectsComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.deleteObject = new System.Windows.Forms.ToolStripButton();
             this.XLabel = new System.Windows.Forms.ToolStripLabel();
             this.TextBoxX = new System.Windows.Forms.ToolStripTextBox();
             this.YLabel = new System.Windows.Forms.ToolStripLabel();
@@ -67,14 +58,23 @@
             this.rTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.gTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.bTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.submitButton = new System.Windows.Forms.ToolStripButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.valueLabel = new System.Windows.Forms.Label();
             this.secondLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.canvas1 = new MironovComposition.Canvas();
             this.speedLabel = new System.Windows.Forms.Label();
+            this.canvas1 = new MironovComposition.Canvas();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.addCubeButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.addTriangleButton = new System.Windows.Forms.ToolStripButton();
+            this.deleteObject = new System.Windows.Forms.ToolStripButton();
+            this.submitButton = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -175,73 +175,10 @@
             this.saveObjects.Text = "Сохранить";
             this.saveObjects.Click += new System.EventHandler(this.saveObjects_Click);
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "Запустить";
-            this.toolStripButton2.Click += new System.EventHandler(this.StartAnimation);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "Остановить";
-            this.toolStripButton3.Click += new System.EventHandler(this.StopAnimation);
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton4.Text = "toolStripButton4";
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // addCubeButton
-            // 
-            this.addCubeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.addCubeButton.Image = ((System.Drawing.Image)(resources.GetObject("addCubeButton.Image")));
-            this.addCubeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.addCubeButton.Name = "addCubeButton";
-            this.addCubeButton.Size = new System.Drawing.Size(23, 22);
-            this.addCubeButton.Text = "Добавить куб";
-            this.addCubeButton.Click += new System.EventHandler(this.addCube_Click);
-            // 
-            // addTriangleButton
-            // 
-            this.addTriangleButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.addTriangleButton.Image = ((System.Drawing.Image)(resources.GetObject("addTriangleButton.Image")));
-            this.addTriangleButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.addTriangleButton.Name = "addTriangleButton";
-            this.addTriangleButton.Size = new System.Drawing.Size(23, 22);
-            this.addTriangleButton.Text = "Добавить треугольник";
-            this.addTriangleButton.Click += new System.EventHandler(this.addTriangle_Click);
             // 
             // toolStripSeparator3
             // 
@@ -265,13 +202,14 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripSeparator1,
             this.toolStripButton2,
             this.toolStripButton3,
+            this.toolStripButton1,
             this.toolStripButton4,
             this.toolStripSeparator2,
             this.addCubeButton,
+            this.toolStripButton6,
+            this.toolStripButton5,
             this.addTriangleButton,
             this.toolStripSeparator3,
             this.deleteObject,
@@ -295,16 +233,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(1084, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // deleteObject
-            // 
-            this.deleteObject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.deleteObject.Image = ((System.Drawing.Image)(resources.GetObject("deleteObject.Image")));
-            this.deleteObject.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.deleteObject.Name = "deleteObject";
-            this.deleteObject.Size = new System.Drawing.Size(23, 22);
-            this.deleteObject.Text = "toolStripButton7";
-            this.deleteObject.Click += new System.EventHandler(this.deleteObject_Click);
             // 
             // XLabel
             // 
@@ -387,16 +315,6 @@
             this.bTextBox.Size = new System.Drawing.Size(45, 25);
             this.bTextBox.Text = "145";
             // 
-            // submitButton
-            // 
-            this.submitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.submitButton.Image = ((System.Drawing.Image)(resources.GetObject("submitButton.Image")));
-            this.submitButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.submitButton.Name = "submitButton";
-            this.submitButton.Size = new System.Drawing.Size(23, 22);
-            this.submitButton.Text = "Применить";
-            this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.label1);
@@ -442,6 +360,15 @@
             this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // speedLabel
+            // 
+            this.speedLabel.AutoSize = true;
+            this.speedLabel.Location = new System.Drawing.Point(216, 0);
+            this.speedLabel.Name = "speedLabel";
+            this.speedLabel.Size = new System.Drawing.Size(58, 13);
+            this.speedLabel.TabIndex = 3;
+            this.speedLabel.Text = "Скорость:";
+            // 
             // canvas1
             // 
             this.canvas1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -451,14 +378,101 @@
             this.canvas1.Size = new System.Drawing.Size(1084, 473);
             this.canvas1.TabIndex = 3;
             // 
-            // speedLabel
+            // toolStripButton2
             // 
-            this.speedLabel.AutoSize = true;
-            this.speedLabel.Location = new System.Drawing.Point(216, 0);
-            this.speedLabel.Name = "speedLabel";
-            this.speedLabel.Size = new System.Drawing.Size(58, 13);
-            this.speedLabel.TabIndex = 3;
-            this.speedLabel.Text = "Скорость:";
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = global::MironovComposition.Properties.Resources.startAnimation;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "Запустить";
+            this.toolStripButton2.Click += new System.EventHandler(this.StartAnimation);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = global::MironovComposition.Properties.Resources.stopAnimation;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Text = "Остановить";
+            this.toolStripButton3.Click += new System.EventHandler(this.StopAnimation);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::MironovComposition.Properties.Resources.paramAnimation;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "Параметры анимации";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = global::MironovComposition.Properties.Resources.loadParam;
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Text = "Загрузить параметры";
+            // 
+            // addCubeButton
+            // 
+            this.addCubeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.addCubeButton.Image = global::MironovComposition.Properties.Resources.createSquare;
+            this.addCubeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.addCubeButton.Name = "addCubeButton";
+            this.addCubeButton.Size = new System.Drawing.Size(23, 22);
+            this.addCubeButton.Text = "Добавить куб";
+            this.addCubeButton.Click += new System.EventHandler(this.addCube_Click);
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton6.Image = global::MironovComposition.Properties.Resources.createTreangle;
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton6.Text = "Добавить треугольник";
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton5.Image = global::MironovComposition.Properties.Resources.loadFigures;
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton5.Text = "Загрузить фигуры";
+            // 
+            // addTriangleButton
+            // 
+            this.addTriangleButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.addTriangleButton.Image = global::MironovComposition.Properties.Resources.saveFigures;
+            this.addTriangleButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.addTriangleButton.Name = "addTriangleButton";
+            this.addTriangleButton.Size = new System.Drawing.Size(23, 22);
+            this.addTriangleButton.Text = "Сохранить фигуры";
+            this.addTriangleButton.Click += new System.EventHandler(this.addTriangle_Click);
+            // 
+            // deleteObject
+            // 
+            this.deleteObject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.deleteObject.Image = global::MironovComposition.Properties.Resources.deleteFigure;
+            this.deleteObject.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.deleteObject.Name = "deleteObject";
+            this.deleteObject.Size = new System.Drawing.Size(23, 22);
+            this.deleteObject.Text = "Удалить выбранную фигуру";
+            this.deleteObject.Click += new System.EventHandler(this.deleteObject_Click);
+            // 
+            // submitButton
+            // 
+            this.submitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.submitButton.Image = global::MironovComposition.Properties.Resources.submitButton;
+            this.submitButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.submitButton.Name = "submitButton";
+            this.submitButton.Size = new System.Drawing.Size(23, 22);
+            this.submitButton.Text = "Применить";
+            this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
             // 
             // MainForm
             // 
@@ -493,8 +507,6 @@
         private System.Windows.Forms.ToolStripMenuItem параметрыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem фигурыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CreateObject;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
@@ -531,6 +543,9 @@
         private System.Windows.Forms.Label valueLabel;
         private System.Windows.Forms.Label secondLabel;
         private System.Windows.Forms.Label speedLabel;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton6;
+        private System.Windows.Forms.ToolStripButton toolStripButton5;
     }
 }
 

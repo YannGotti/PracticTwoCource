@@ -77,6 +77,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -90,6 +91,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Иконки\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Иконки\startAnimation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Иконки\stopAnimation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Иконки\paramAnimation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Иконки\loadParam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Иконки\createSquare.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Иконки\createTreangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Иконки\loadFigures.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Иконки\saveFigures.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Иконки\deleteFigure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Иконки\submitButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
