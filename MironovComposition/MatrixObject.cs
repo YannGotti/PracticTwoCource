@@ -109,10 +109,8 @@ namespace MironovComposition
 
         public void AppendLeft(MatrixObject m)
         {
-            // Умножить слева M = m * M
             Mult3x3(m.matrix, matrix, TempMatrix);
 
-            // поменять местами
             double[][] t = matrix;
             matrix = temp;
             temp = t;
@@ -127,7 +125,6 @@ namespace MironovComposition
             return res;
         }
 
-        // вспомогательная переменная для хранения результата
         private static double[][] temp = null;
 
         public static double[][] TempMatrix

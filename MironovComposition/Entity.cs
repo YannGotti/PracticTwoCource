@@ -18,7 +18,6 @@ namespace MironovComposition
         public Square(string name, int x, int y)
             : base(name, x, y)
         {
-            // Точки квадрата
             source.Clear();
             source.Add(new PointF(0, 0));
             source.Add(new PointF(1, 0));
@@ -32,14 +31,12 @@ namespace MironovComposition
             sourceShadow.Add(new PointF(0, 1));
             sourceShadow.Add(new PointF(-15, -6));
 
-            // координаты центра
             xc = 0.5;
             yc = 0.5;
         }
 
         protected override void DrawObject(Graphics g)
         {
-            // Нарисовать объект
             g.FillPolygon(new SolidBrush(Color.FromArgb(R, G, B)), transformed.ToArray());
 
             if (enable)
@@ -54,7 +51,6 @@ namespace MironovComposition
 
         public override ObjectsTypes GetObjectType()
         {
-            // воздушный транспорт
             return ObjectsTypes.Square;
         }
     }
@@ -86,7 +82,6 @@ namespace MironovComposition
 
         protected override void DrawObject(Graphics g)
         {
-            // Нарисовать объект
             g.FillPolygon(new SolidBrush(Color.FromArgb(R, G, B)), transformed.ToArray());
 
             if (enable)
@@ -101,7 +96,6 @@ namespace MironovComposition
 
         public override ObjectsTypes GetObjectType()
         {
-            // воздушный транспорт
             return ObjectsTypes.Triangle;
         }
     }
@@ -116,21 +110,18 @@ namespace MironovComposition
         public Springboard(string name, int x, int y)
             : base(name, x, y)
         {
-            // Точки квадрата
             source.Clear();
             source.Add(new PointF(-3, 0));
             source.Add(new PointF(2, 0));
             source.Add(new PointF(2, 1));
             source.Add(new PointF(0, 1));
 
-            // координаты центра
             xc = 0.5;
             yc = 0.5;
         }
 
         protected override void DrawObject(Graphics g)
         {
-            // Нарисовать объект
             g.FillPolygon(new SolidBrush(Color.FromArgb(R, G, B)), transformed.ToArray());
 
             if (!enable)
@@ -139,7 +130,6 @@ namespace MironovComposition
 
         public override ObjectsTypes GetObjectType()
         {
-            // воздушный транспорт
             return ObjectsTypes.Springboard;
         }
     }
@@ -272,7 +262,6 @@ namespace MironovComposition
 
         public override ObjectsTypes GetObjectType()
         {
-            // воздушный транспорт
             return ObjectsTypes.Lamp;
         }
     }
