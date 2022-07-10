@@ -64,7 +64,6 @@
             this.secondLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.speedLabel = new System.Windows.Forms.Label();
-            this.canvas1 = new MironovComposition.Canvas();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -75,6 +74,7 @@
             this.addTriangleButton = new System.Windows.Forms.ToolStripButton();
             this.deleteObject = new System.Windows.Forms.ToolStripButton();
             this.submitButton = new System.Windows.Forms.ToolStripButton();
+            this.canvas1 = new MironovComposition.Canvas();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -144,7 +144,7 @@
             this.addCube,
             this.addTriangle});
             this.CreateObject.Name = "CreateObject";
-            this.CreateObject.Size = new System.Drawing.Size(133, 22);
+            this.CreateObject.Size = new System.Drawing.Size(180, 22);
             this.CreateObject.Text = "Создать";
             // 
             // addCube
@@ -164,14 +164,14 @@
             // loadObjects
             // 
             this.loadObjects.Name = "loadObjects";
-            this.loadObjects.Size = new System.Drawing.Size(133, 22);
+            this.loadObjects.Size = new System.Drawing.Size(180, 22);
             this.loadObjects.Text = "Загрузить";
             this.loadObjects.Click += new System.EventHandler(this.loadObjects_Click);
             // 
             // saveObjects
             // 
             this.saveObjects.Name = "saveObjects";
-            this.saveObjects.Size = new System.Drawing.Size(133, 22);
+            this.saveObjects.Size = new System.Drawing.Size(180, 22);
             this.saveObjects.Text = "Сохранить";
             this.saveObjects.Click += new System.EventHandler(this.saveObjects_Click);
             // 
@@ -369,15 +369,6 @@
             this.speedLabel.TabIndex = 3;
             this.speedLabel.Text = "Скорость:";
             // 
-            // canvas1
-            // 
-            this.canvas1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.canvas1.Location = new System.Drawing.Point(0, 49);
-            this.canvas1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.canvas1.Name = "canvas1";
-            this.canvas1.Size = new System.Drawing.Size(1084, 473);
-            this.canvas1.TabIndex = 3;
-            // 
             // toolStripButton2
             // 
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -434,6 +425,7 @@
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton6.Text = "Добавить треугольник";
+            this.toolStripButton6.Click += new System.EventHandler(this.addTriangle_Click);
             // 
             // toolStripButton5
             // 
@@ -443,6 +435,7 @@
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton5.Text = "Загрузить фигуры";
+            this.toolStripButton5.Click += new System.EventHandler(this.loadObjects_Click);
             // 
             // addTriangleButton
             // 
@@ -452,7 +445,7 @@
             this.addTriangleButton.Name = "addTriangleButton";
             this.addTriangleButton.Size = new System.Drawing.Size(23, 22);
             this.addTriangleButton.Text = "Сохранить фигуры";
-            this.addTriangleButton.Click += new System.EventHandler(this.addTriangle_Click);
+            this.addTriangleButton.Click += new System.EventHandler(this.saveObjects_Click);
             // 
             // deleteObject
             // 
@@ -473,6 +466,15 @@
             this.submitButton.Size = new System.Drawing.Size(23, 22);
             this.submitButton.Text = "Применить";
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
+            // 
+            // canvas1
+            // 
+            this.canvas1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.canvas1.Location = new System.Drawing.Point(0, 49);
+            this.canvas1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.canvas1.Name = "canvas1";
+            this.canvas1.Size = new System.Drawing.Size(1084, 473);
+            this.canvas1.TabIndex = 3;
             // 
             // MainForm
             // 
