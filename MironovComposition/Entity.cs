@@ -140,7 +140,7 @@ namespace MironovComposition
         public override ObjectsTypes GetObjectType()
         {
             // воздушный транспорт
-            return ObjectsTypes.Triangle;
+            return ObjectsTypes.Springboard;
         }
     }
 
