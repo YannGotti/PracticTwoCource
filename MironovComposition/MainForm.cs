@@ -21,16 +21,14 @@ namespace MironovComposition
 
         int x = 0;
         int y = 0;
-
         bool AnimationStart;
-
         double value;
         double second;
 
         LampObject Lamp = new LampObject("Лампа", 850, 469);
         Triangle Triangle = new Triangle("Треугольник", 720, 275);
-        Square Cube = new Square("куб", 50, 170);
-        SpringboardObject Springboard = new SpringboardObject("Трамплин", 650, 375);
+        Square Cube = new Square("Квадрат", 50, 170);
+        Springboard Springboard = new Springboard("Трамплин", 650, 53);
 
         public MainForm()
         {
@@ -38,13 +36,12 @@ namespace MironovComposition
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             VisibleStripTools(false);
 
+            objects.Add(Cube);
+            objects.Add(Springboard);
             objects.Add(Triangle);
             objects.Add(Lamp);
-            objects.Add(Springboard);
-            objects.Add(Cube);
             canvas1.Objects = objects;
             FillListBox();
-
         }
 
         protected void FillListBox()
@@ -70,7 +67,6 @@ namespace MironovComposition
                     FillListBox();
                     canvas1.Invalidate();
                 }
-
             }
             catch (Exception)
             {
@@ -108,7 +104,6 @@ namespace MironovComposition
 
                 Object.X = x;
                 Object.Y = y;
-                Object.Rotate = rotate;
                 Object.Angle = rotate;
                 Object.ColorR = R;
                 Object.ColorG = G;
@@ -128,7 +123,7 @@ namespace MironovComposition
             TextBoxY.Text = Object.Y.ToString();
             TextBoxX.Text = Object.X.ToString();
             SizeTextBox.Text = Object.Size.ToString();
-            RotateTextBox.Text = Object.Rotate.ToString();
+            RotateTextBox.Text = Object.Angle.ToString();
             rTextBox.Text = Object.ColorR.ToString();
             gTextBox.Text = Object.ColorG.ToString();
             bTextBox.Text = Object.ColorB.ToString();

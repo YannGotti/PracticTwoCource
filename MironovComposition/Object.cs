@@ -24,7 +24,6 @@ namespace MironovComposition
         protected int x;
         protected int y;
         protected int size;
-        protected int rotate;
         protected int R;
         protected int B;
         protected int G;
@@ -81,7 +80,6 @@ namespace MironovComposition
             this.y = y;
 
             size = 100;
-            rotate = 0;
             R = 123;
             G = 123;
             B = 123;
@@ -157,23 +155,6 @@ namespace MironovComposition
         {
             set { scaleY = value; }
             get { return scaleY; }
-        }
-
-        public int Rotate
-        {
-            set
-            {
-                if (value < 0)
-                    rotate = 0;
-                if (value > 360)
-                    rotate = 360;
-                else
-                    rotate = value;
-            }
-            get
-            {
-                return rotate;
-            }
         }
 
         public double Angle
@@ -298,7 +279,7 @@ namespace MironovComposition
 
         public virtual string GetDataString()
         {
-            return $"{(int)GetObjectType()};{Name};{X};{Y};{Size};{Rotate};{R};{G};{B}";
+            return $"{(int)GetObjectType()};{Name};{X};{Y};{Size};{Angle};{R};{G};{B}";
         }
 
         public static bool SaveData(string fileName, List<Object> objects)
@@ -403,7 +384,7 @@ namespace MironovComposition
             int x;
             int y;
             int size;
-            int rotate;
+            int angle;
             int R;
             int B;
             int G;
@@ -416,7 +397,7 @@ namespace MironovComposition
                 return v;
             if (!int.TryParse(sub[4], out size))
                 return v;
-            if (!int.TryParse(sub[5], out rotate))
+            if (!int.TryParse(sub[5], out angle))
                 return v;
             if (!int.TryParse(sub[6], out R))
                 return v;
@@ -432,7 +413,7 @@ namespace MironovComposition
                     c.Size = size;
                     c.ScaleX = size;
                     c.ScaleY = size;
-                    c.Angle = rotate;
+                    c.Angle = angle;
                     c.ColorR = R;
                     c.ColorG = G;
                     c.ColorB = B;
@@ -443,16 +424,18 @@ namespace MironovComposition
                     t.Size = size;
                     t.ScaleX = size;
                     t.ScaleY = size;
-                    t.Angle = rotate;
+                    t.Angle = angle;
                     t.ColorR = R;
                     t.ColorG = G;
                     t.ColorB = B;
                     v = t;
                     break;
                 case 3:
-                    SpringboardObject s = new SpringboardObject(name, x, y);
+                    Springboard s = new Springboard(name, x, y);
                     s.Size = size;
-                    s.Rotate = rotate;
+                    s.ScaleX = size;
+                    s.ScaleY = size;
+                    s.Angle = angle;
                     s.ColorR = R;
                     s.ColorG = G;
                     s.ColorB = B;
@@ -461,7 +444,7 @@ namespace MironovComposition
                 case 4: 
                     LampObject l = new LampObject(name, x, y);
                     l.Size = size;
-                    l.Rotate = rotate;
+                    l.Angle = angle;
                     l.ColorR = R;
                     l.ColorG = G;
                     l.ColorB = B;
@@ -510,7 +493,7 @@ namespace MironovComposition
         public LampObject(string name, int x, int y)
             : base(name, x, y)
         {
-            Rotate = 110;
+            Angle = 110;
             Enabled = false;
         }
 
