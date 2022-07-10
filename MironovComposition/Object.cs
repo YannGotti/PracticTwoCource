@@ -12,10 +12,10 @@ namespace MironovComposition
     public enum ObjectsTypes
     {
         Unknown,
-        Cube,
+        Square,
         Triangle,
         Springboard,
-        Lamp
+        Lamp,
     }
 
     public class Object
@@ -31,7 +31,9 @@ namespace MironovComposition
         protected bool enable;
 
         protected List<PointF> source;
+        protected List<PointF> sourceShadow;
         protected List<PointF> transformed;
+        protected List<PointF> transformedShadow;
 
         protected double angle;
 
@@ -47,25 +49,26 @@ namespace MironovComposition
 
         protected MatrixObject resultMatrix;
 
-
         public Object()
         {
-            
-
+            source = new List<PointF>();
+            transformed = new List<PointF>();
         }
 
         public Object(string name, int x, int y)
         {
             source = new List<PointF>();
             transformed = new List<PointF>();
+            transformedShadow = new List<PointF>();
+            sourceShadow = new List<PointF>();
 
             xc = 0;
             yc = 0;
 
             angle = 0;
 
-            scaleX = 1;
-            scaleY = 1;
+            scaleX = 100;
+            scaleY = 100;
 
             scaleMatrix = new MatrixObject();
             rotationMatrix = new MatrixObject();
@@ -77,7 +80,7 @@ namespace MironovComposition
             this.x = x;
             this.y = y;
 
-            size = 1;
+            size = 100;
             rotate = 0;
             R = 123;
             G = 123;
@@ -91,6 +94,9 @@ namespace MironovComposition
             transformed.Clear();
             for (int i = 0; i < source.Count; i++)
                 transformed.Add(new PointF());
+            transformedShadow.Clear();
+            for (int i = 0; i < sourceShadow.Count; i++)
+                transformedShadow.Add(new PointF());
         }
 
         public string Name
@@ -243,13 +249,14 @@ namespace MironovComposition
         public void Draw(Graphics g, MatrixObject viewportMatrix)
         {
             Transform(viewportMatrix);
-
             DrawObject(g);
         }
 
         protected virtual void Transform(MatrixObject viewportMatrix)
         {
             if (transformed.Count != source.Count)
+                CreateTransformedPoints();
+            if (transformedShadow.Count != sourceShadow.Count)
                 CreateTransformedPoints();
 
             resultMatrix.Identity();
@@ -270,6 +277,8 @@ namespace MironovComposition
 
             for (int i = 0; i < source.Count; i++)
                 transformed[i] = resultMatrix.Transform(source[i]);
+            for (int i = 0; i < sourceShadow.Count; i++)
+                transformedShadow[i] = resultMatrix.Transform(sourceShadow[i]);
         }
 
         protected virtual void DrawObject(Graphics g)
@@ -419,18 +428,22 @@ namespace MironovComposition
             switch (type)
             {
                 case 1:
-                    CubeObject c = new CubeObject(name, x, y);
+                    Square c = new Square(name, x, y);
                     c.Size = size;
-                    c.Rotate = rotate;
+                    c.ScaleX = size;
+                    c.ScaleY = size;
+                    c.Angle = rotate;
                     c.ColorR = R;
                     c.ColorG = G;
                     c.ColorB = B;
                     v = c;
                     break;
                 case 2:
-                    TriangleObject t = new TriangleObject(name, x, y);
+                    Triangle t = new Triangle(name, x, y);
                     t.Size = size;
-                    t.Rotate = rotate;
+                    t.ScaleX = size;
+                    t.ScaleY = size;
+                    t.Angle = rotate;
                     t.ColorR = R;
                     t.ColorG = G;
                     t.ColorB = B;
@@ -461,51 +474,7 @@ namespace MironovComposition
 
     }
 
-    public class CubeObject : Object
-    {
-        public CubeObject()
-            : base()
-        {
-        }
-
-        public CubeObject(string name, int x, int y)
-            : base(name, x, y)
-        {
-            Enabled = false;
-        }
-
-        public override ObjectsTypes GetObjectType()
-        {
-            // воздушный транспорт
-            return ObjectsTypes.Cube;
-        }
-
-    }
-
-
-    public class TriangleObject : Object
-    {
-        public TriangleObject()
-            : base()
-        {
-
-        }
-
-        public TriangleObject(string name, int x, int y)
-            : base(name, x, y)
-        {
-            Enabled = false;
-        }
-
-        public override ObjectsTypes GetObjectType()
-        {
-            // воздушный транспорт
-            return ObjectsTypes.Triangle;
-        }
-
-    }
-
-
+   
     public class SpringboardObject : Object
     {
 

@@ -19,9 +19,6 @@ namespace MironovComposition
         int G = 0;
         int B = 0;
 
-        double scaleX;
-        double scaleY;
-
         int x = 0;
         int y = 0;
 
@@ -31,8 +28,8 @@ namespace MironovComposition
         double second;
 
         LampObject Lamp = new LampObject("Лампа", 850, 469);
-        TriangleObject Triangle = new TriangleObject("Треугольник", 720, 275);
-        CubeObject Cube = new CubeObject("Куб", 0, 170);
+        Triangle Triangle = new Triangle("Треугольник", 720, 275);
+        Square Cube = new Square("куб", 50, 170);
         SpringboardObject Springboard = new SpringboardObject("Трамплин", 650, 375);
 
         public MainForm()
@@ -41,13 +38,10 @@ namespace MironovComposition
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             VisibleStripTools(false);
 
-            //objects.Add(Cube);
-            //objects.Add(Triangle);
-            //objects.Add(Lamp);
-            //objects.Add(Springboard);
-
-            objects.Add(new Square("куб", 0, 170));
-
+            objects.Add(Triangle);
+            objects.Add(Lamp);
+            objects.Add(Springboard);
+            objects.Add(Cube);
             canvas1.Objects = objects;
             FillListBox();
 
@@ -104,32 +98,6 @@ namespace MironovComposition
                     {
                         Object.X += size / 12;
                         Object.Y += size / 12;
-                    }
-
-                    if (Object.GetObjectType() == ObjectsTypes.Cube)
-                    {
-                        if (Object.Size < size)
-                        {
-                            Object.X -= size / 12;
-                            Object.Y -= size / 12;
-                        }
-                        else
-                        {
-                            Object.X += size / 12;
-                            Object.Y += size / 12;
-                        }
-                    }
-                    if (Object.GetObjectType() == ObjectsTypes.Triangle)
-                    {
-                        if (Object.Size < size)
-                        {
-                            Object.Y -= size / 12;
-                        }
-                        else
-                        {
-                            Object.Y += size / 12;
-                        }
-
                     }
 
                     Object.Size = size;
@@ -204,18 +172,6 @@ namespace MironovComposition
         {
 
             if (!int.TryParse(SizeTextBox.Text, out size))
-            {
-                MessageBox.Show("Данные введены не корректно!");
-                return false;
-            }
-
-            if (!double.TryParse(SizeTextBox.Text, out scaleX))
-            {
-                MessageBox.Show("Данные введены не корректно!");
-                return false;
-            }
-
-            if (!double.TryParse(SizeTextBox.Text, out scaleY))
             {
                 MessageBox.Show("Данные введены не корректно!");
                 return false;
@@ -303,7 +259,7 @@ namespace MironovComposition
             string name = name_cube;
             Random rand = new Random();
             cube_id++;
-            CubeObject cube_add = new CubeObject(name.Insert(4, cube_id.ToString()), 0, 0);
+            Square cube_add = new Square(name.Insert(4, cube_id.ToString()), 50, 50);
             if (AnimationStart)
                 cube_add.Enabled = true;
             cube_add.ColorR = rand.Next(0, 255);
@@ -322,7 +278,7 @@ namespace MironovComposition
             Random rand = new Random();
             string name = name_triangle;
             triangle_id++;
-            TriangleObject triangle_add = new TriangleObject(name.Insert(12, triangle_id.ToString()), 50, 0);
+            Triangle triangle_add = new Triangle(name.Insert(12, triangle_id.ToString()), 50, 50);
             if (AnimationStart)
                 triangle_add.Enabled = true;
 

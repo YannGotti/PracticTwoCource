@@ -31,7 +31,7 @@ namespace MironovComposition
             objectsList = null;
             DoubleBuffered = true;
 
-            sceneSize = 15000;
+            sceneSize = 1100;
             viewMatrix = new MatrixObject();
 
         }
@@ -77,30 +77,19 @@ namespace MironovComposition
                         0, sceneHeight, bound.Bottom, bound.Top);
 
                     Object o = objectsList[i];
-                    /*switch (o.GetObjectType())
+                    switch (o.GetObjectType())
                     {
                         case ObjectsTypes.Lamp:
                             DrawLamp(g, o, bound);
-                            break;
-                        case ObjectsTypes.Cube:
-                            DrawCube(g, o);
-                            break;
-                        case ObjectsTypes.Triangle:
-                            DrawTriangle(g, o);
                             break;
                         case ObjectsTypes.Springboard:
                             DrawSpringboard(g, o);
                             break;
                         default:
                             break;
-                    }*/
+                    }
 
                     o.Draw(g, viewMatrix);
-
-                    string text = $"size = {o.Size}, angle = {o.Angle}, x = {o.X}, y = {o.Y}";
-                    g.DrawString(text, Font, Brushes.Black, new PointF(10, 10));
-
-
                 }
 
             }
@@ -116,48 +105,6 @@ namespace MironovComposition
                     bound.Width, bound.Height);
                 g.DrawString(text1, Font, Brushes.Black, rect, format);
             }
-        }
-        protected void DrawCube(Graphics g, Object Object)
-        {
-            x = Object.X;
-            y = Object.Y;
-            size = Object.Size;
-            rotate = Object.Rotate;
-            R = Object.ColorR;
-            B = Object.ColorB;
-            G = Object.ColorG;
-
-            SolidBrush brush = new SolidBrush(Color.FromArgb(R, G, B));
-            SolidBrush brushShadow = new SolidBrush(Color.FromArgb(30, 0, 0, 0));
-
-            Point[] ArrayCube =
-            {
-                new Point(x, y), new Point(x + size, y), new Point(x + size,y + size),
-                new Point(x, y + size), new Point(x, y)
-            };
-
-            Matrix myMatrix = new Matrix();
-            myMatrix.RotateAt(-rotate, new Point(x + size / 2, y + size / 2));
-            myMatrix.TransformPoints(ArrayCube);
-            g.FillPolygon(brush, ArrayCube);
-
-            if (Object.Enabled)
-            {
-                Point[] ArrayShadow =
-                {
-                    ArrayCube[0], ArrayCube[3], ArrayCube[2],
-                    new Point(ArrayCube[2].X - 30, 472 - 3),new Point(x - 300, 472 - 3),
-                };
-
-                g.FillPolygon(brushShadow, ArrayShadow);
-
-            }
-            else
-            {
-                g.DrawPolygon(new Pen(Color.Black, 2), ArrayCube);
-            }
-
-
         }
 
         protected void DrawTriangle(Graphics g, Object Object)
@@ -202,8 +149,6 @@ namespace MironovComposition
 
 
         }
-
-
         protected void DrawSpringboard(Graphics g, Object Object)
         {
             x = Object.X;
