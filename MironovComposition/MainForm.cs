@@ -12,12 +12,15 @@ namespace MironovComposition
 {
     public partial class MainForm : Form
     {
-        List<Object> objects;
+        List<Object> objects = new List<Object>();
         int size = 0;
         int rotate = 0;
         int R = 0;
         int G = 0;
         int B = 0;
+
+        double scaleX;
+        double scaleY;
 
         int x = 0;
         int y = 0;
@@ -38,11 +41,12 @@ namespace MironovComposition
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             VisibleStripTools(false);
 
-            objects = new List<Object>();
-            objects.Add(Cube);
-            objects.Add(Triangle);
-            objects.Add(Lamp);
-            objects.Add(Springboard);
+            //objects.Add(Cube);
+            //objects.Add(Triangle);
+            //objects.Add(Lamp);
+            //objects.Add(Springboard);
+
+            objects.Add(new Square("куб", 0, 170));
 
             canvas1.Objects = objects;
             FillListBox();
@@ -91,6 +95,17 @@ namespace MironovComposition
             {
                 if (Object.Size != size)
                 {
+                    if (Object.Size < size)
+                    {
+                        Object.X -= size / 12;
+                        Object.Y -= size / 12;
+                    }
+                    else
+                    {
+                        Object.X += size / 12;
+                        Object.Y += size / 12;
+                    }
+
                     if (Object.GetObjectType() == ObjectsTypes.Cube)
                     {
                         if (Object.Size < size)
@@ -118,14 +133,20 @@ namespace MironovComposition
                     }
 
                     Object.Size = size;
+                    Object.ScaleX = size;
+                    Object.ScaleY = size;
+
                 }
 
                 Object.X = x;
                 Object.Y = y;
                 Object.Rotate = rotate;
+                Object.Angle = rotate;
                 Object.ColorR = R;
                 Object.ColorG = G;
                 Object.ColorB = B;
+
+
                 canvas1.Invalidate();
             }
         }
@@ -183,6 +204,18 @@ namespace MironovComposition
         {
 
             if (!int.TryParse(SizeTextBox.Text, out size))
+            {
+                MessageBox.Show("Данные введены не корректно!");
+                return false;
+            }
+
+            if (!double.TryParse(SizeTextBox.Text, out scaleX))
+            {
+                MessageBox.Show("Данные введены не корректно!");
+                return false;
+            }
+
+            if (!double.TryParse(SizeTextBox.Text, out scaleY))
             {
                 MessageBox.Show("Данные введены не корректно!");
                 return false;

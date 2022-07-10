@@ -4,14 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1F240D04-70E8-4914-B906-0CF3327891C8}</ProjectGuid>
+    <ProjectGuid>{EA1F0EA6-BFED-4B92-BA4A-A0604A85ACC4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>MironovComposition</RootNamespace>
-    <AssemblyName>MironovComposition</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RootNamespace>SampleAnimationApplication</RootNamespace>
+    <AssemblyName>SampleAnimationApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,25 +46,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Canvas.cs">
+    <Compile Include="AffineMatrix.cs" />
+    <Compile Include="AnimationControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Canvas.Designer.cs">
-      <DependentUpon>Canvas.cs</DependentUpon>
+    <Compile Include="AnimationControl.Designer.cs">
+      <DependentUpon>AnimationControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaseGraphicObject.cs" />
+    <Compile Include="BezierCurve.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MatrixObject.cs" />
-    <Compile Include="Object.cs" />
+    <Compile Include="ObjectParametersEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SettingsControl.Designer.cs">
+      <DependentUpon>SettingsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Square.cs" />
-    <EmbeddedResource Include="Canvas.resx">
-      <DependentUpon>Canvas.cs</DependentUpon>
+    <EmbeddedResource Include="AnimationControl.resx">
+      <DependentUpon>AnimationControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -77,7 +85,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SettingsControl.resx">
+      <DependentUpon>SettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -22,11 +22,18 @@ namespace MironovComposition
         int G = 0;
         int rotate = 0;
 
+        int sceneSize;
+        MatrixObject viewMatrix;
+
         public Canvas()
         {
             InitializeComponent();
-            DoubleBuffered = true;
             objectsList = null;
+            DoubleBuffered = true;
+
+            sceneSize = 15000;
+            viewMatrix = new MatrixObject();
+
         }
 
         public List<Object> Objects
@@ -37,22 +44,40 @@ namespace MironovComposition
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            // Заполнение фона
-            e.Graphics.FillRectangle(Brushes.White, ClientRectangle);
-            e.Graphics.DrawLine(new Pen(Color.Black, 6), new Point(ClientRectangle.Left, ClientRectangle.Bottom),
-                new Point(ClientRectangle.Right, ClientRectangle.Bottom));
+            
             // Вывод карты
-            DrawMap(e.Graphics, ClientRectangle);
+            Draw(e.Graphics, ClientRectangle);
         }
 
-        protected void DrawMap(Graphics g, Rectangle bound)
+        protected override void OnSizeChanged(EventArgs e)
         {
+            base.OnSizeChanged(e);
+
+            // перерисовка при изменении размеров экрана (элемента управления)
+            Invalidate();
+        }
+
+        protected void Draw(Graphics g, Rectangle bound)
+        {
+            g.FillRectangle(Brushes.White, ClientRectangle);
+            g.DrawLine(new Pen(Color.Black, 6), new Point(ClientRectangle.Left, ClientRectangle.Bottom),
+                new Point(ClientRectangle.Right, ClientRectangle.Bottom));
+
+            
+
+
             if (objectsList != null && objectsList.Count > 0)
             {
                 for (int i = 0; i < objectsList.Count; i++)
                 {
+                    double a = (double)bound.Width / bound.Height;
+                    double sceneHeight = sceneSize / a;
+
+                    viewMatrix.Viewport(0, sceneSize, bound.Left, bound.Right,
+                        0, sceneHeight, bound.Bottom, bound.Top);
+
                     Object o = objectsList[i];
-                    switch (o.GetObjectType())
+                    /*switch (o.GetObjectType())
                     {
                         case ObjectsTypes.Lamp:
                             DrawLamp(g, o, bound);
@@ -68,20 +93,28 @@ namespace MironovComposition
                             break;
                         default:
                             break;
-                    }
+                    }*/
+
+                    o.Draw(g, viewMatrix);
+
+                    string text = $"size = {o.Size}, angle = {o.Angle}, x = {o.X}, y = {o.Y}";
+                    g.DrawString(text, Font, Brushes.Black, new PointF(10, 10));
+
+
                 }
+
             }
             else
             {
                 // Вывод текста
-                string text = "Область анимации";
+                string text1 = "Область анимации";
                 StringFormat format = new StringFormat();
                 format.Alignment = StringAlignment.Center;
                 format.LineAlignment = StringAlignment.Center;
 
                 RectangleF rect = new RectangleF(bound.X, bound.Y,
                     bound.Width, bound.Height);
-                g.DrawString(text, Font, Brushes.Black, rect, format);
+                g.DrawString(text1, Font, Brushes.Black, rect, format);
             }
         }
         protected void DrawCube(Graphics g, Object Object)

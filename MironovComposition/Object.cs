@@ -20,32 +20,77 @@ namespace MironovComposition
 
     public class Object
     {
-        string name;
-        int x;
-        int y;
-        int size;
-        int rotate;
-        int R;
-        int B;
-        int G;
-        bool enable;
+        protected string name;
+        protected int x;
+        protected int y;
+        protected int size;
+        protected int rotate;
+        protected int R;
+        protected int B;
+        protected int G;
+        protected bool enable;
+
+        protected List<PointF> source;
+        protected List<PointF> transformed;
+
+        protected double angle;
+
+        protected double scaleX;
+        protected double scaleY;
+
+        protected double xc;
+        protected double yc;
+
+        protected MatrixObject scaleMatrix;
+        protected MatrixObject rotationMatrix;
+        protected MatrixObject translationMatrix;
+
+        protected MatrixObject resultMatrix;
+
 
         public Object()
         {
+            
+
         }
 
         public Object(string name, int x, int y)
         {
+            source = new List<PointF>();
+            transformed = new List<PointF>();
+
+            xc = 0;
+            yc = 0;
+
+            angle = 0;
+
+            scaleX = 1;
+            scaleY = 1;
+
+            scaleMatrix = new MatrixObject();
+            rotationMatrix = new MatrixObject();
+            translationMatrix = new MatrixObject();
+
+            resultMatrix = new MatrixObject();
+
             this.name = name;
             this.x = x;
             this.y = y;
 
-            size = 100;
+            size = 1;
             rotate = 0;
             R = 123;
             G = 123;
             B = 123;
             enable = false;
+        }
+
+        protected void CreateTransformedPoints()
+        {
+            // создание списка преобразованных точек
+            transformed.Clear();
+            for (int i = 0; i < source.Count; i++)
+                transformed.Add(new PointF());
         }
 
         public string Name
@@ -96,6 +141,18 @@ namespace MironovComposition
             }
         }
 
+        public double ScaleX
+        {
+            set { scaleX = value; }
+            get { return scaleX; }
+        }
+
+        public double ScaleY
+        {
+            set { scaleY = value; }
+            get { return scaleY; }
+        }
+
         public int Rotate
         {
             set
@@ -111,6 +168,12 @@ namespace MironovComposition
             {
                 return rotate;
             }
+        }
+
+        public double Angle
+        {
+            set { angle = value; }
+            get { return angle; }
         }
 
         public int ColorR
@@ -175,6 +238,44 @@ namespace MironovComposition
                 return enable;
             }
         }
+
+
+        public void Draw(Graphics g, MatrixObject viewportMatrix)
+        {
+            Transform(viewportMatrix);
+
+            DrawObject(g);
+        }
+
+        protected virtual void Transform(MatrixObject viewportMatrix)
+        {
+            if (transformed.Count != source.Count)
+                CreateTransformedPoints();
+
+            resultMatrix.Identity();
+
+            translationMatrix.Translate(-xc, -yc);
+            resultMatrix.AppendLeft(translationMatrix);
+
+            scaleMatrix.Scale(scaleX, scaleY);
+            resultMatrix.AppendLeft(scaleMatrix);
+
+            rotationMatrix.Rotation(angle * Math.PI / 180);
+            resultMatrix.AppendLeft(rotationMatrix);
+
+            translationMatrix.Translate(x, y);
+            resultMatrix.AppendLeft(translationMatrix);
+
+            resultMatrix.AppendLeft(viewportMatrix);
+
+            for (int i = 0; i < source.Count; i++)
+                transformed[i] = resultMatrix.Transform(source[i]);
+        }
+
+        protected virtual void DrawObject(Graphics g)
+        {
+        }
+
 
         public virtual ObjectsTypes GetObjectType()
         {
