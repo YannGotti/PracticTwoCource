@@ -49,10 +49,7 @@ namespace MironovComposition
         protected MatrixObject resultMatrix;
 
         public Object()
-        {
-            source = new List<PointF>();
-            transformed = new List<PointF>();
-        }
+        {}
 
         public Object(string name, int x, int y)
         {

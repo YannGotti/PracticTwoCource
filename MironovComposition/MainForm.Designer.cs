@@ -74,6 +74,7 @@
             this.secondLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.canvas1 = new MironovComposition.Canvas();
+            this.speedLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -86,7 +87,7 @@
             this.фигурыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1106, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1084, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -291,7 +292,7 @@
             this.submitButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1106, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1084, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -401,10 +402,11 @@
             this.flowLayoutPanel1.Controls.Add(this.label1);
             this.flowLayoutPanel1.Controls.Add(this.valueLabel);
             this.flowLayoutPanel1.Controls.Add(this.secondLabel);
+            this.flowLayoutPanel1.Controls.Add(this.speedLabel);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 522);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1106, 19);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1084, 19);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -446,14 +448,23 @@
             this.canvas1.Location = new System.Drawing.Point(0, 49);
             this.canvas1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.canvas1.Name = "canvas1";
-            this.canvas1.Size = new System.Drawing.Size(1106, 473);
+            this.canvas1.Size = new System.Drawing.Size(1084, 473);
             this.canvas1.TabIndex = 3;
+            // 
+            // speedLabel
+            // 
+            this.speedLabel.AutoSize = true;
+            this.speedLabel.Location = new System.Drawing.Point(216, 0);
+            this.speedLabel.Name = "speedLabel";
+            this.speedLabel.Size = new System.Drawing.Size(58, 13);
+            this.speedLabel.TabIndex = 3;
+            this.speedLabel.Text = "Скорость:";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1106, 541);
+            this.ClientSize = new System.Drawing.Size(1084, 541);
             this.Controls.Add(this.canvas1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -519,6 +530,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label valueLabel;
         private System.Windows.Forms.Label secondLabel;
+        private System.Windows.Forms.Label speedLabel;
     }
 }
 

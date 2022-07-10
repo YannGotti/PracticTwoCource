@@ -26,11 +26,11 @@ namespace MironovComposition
             source.Add(new PointF(0, 1));
 
             sourceShadow.Clear();
-            sourceShadow.Add(new PointF(0, -3));
+            sourceShadow.Add(new PointF(0, -6));
             sourceShadow.Add(new PointF(1, 0));
             sourceShadow.Add(new PointF(1, 1));
             sourceShadow.Add(new PointF(0, 1));
-            sourceShadow.Add(new PointF(-15, -3));
+            sourceShadow.Add(new PointF(-15, -6));
 
             // координаты центра
             xc = 0.5;
@@ -69,21 +69,19 @@ namespace MironovComposition
         public Triangle(string name, int x, int y)
             : base(name, x, y)
         {
-            // Точки квадрата
             source.Clear();
             source.Add(new PointF(0, 0));
             source.Add(new PointF(1, 0));
             source.Add(new PointF(0.5f, 1));
 
             sourceShadow.Clear();
-            sourceShadow.Add(new PointF(0, -3));
+            sourceShadow.Add(new PointF(6, 12));
             sourceShadow.Add(new PointF(1, 0));
             sourceShadow.Add(new PointF(0.5f, 1));
-            sourceShadow.Add(new PointF(-15, -3));
+            sourceShadow.Add(new PointF(0, 0));
 
-            // координаты центра
             xc = 0.5;
-            yc = 0.5;
+            yc = 1;
         }
 
         protected override void DrawObject(Graphics g)

@@ -25,15 +25,16 @@ namespace MironovComposition
         double value;
         double second;
 
-        Lamp Lamp = new Lamp("Лампа", 850, 469);
-        Triangle Triangle = new Triangle("Треугольник", 720, 275);
-        Square Cube = new Square("Квадрат", 50, 170);
+        Lamp Lamp = new Lamp("Лампа", 800, 469);
+        Triangle Triangle = new Triangle("Треугольник", 720, 103);
+        Square Cube = new Square("Квадрат", 540, 400);
         Springboard Springboard = new Springboard("Трамплин", 650, 53);
 
         public MainForm()
         {
             InitializeComponent();
             VisibleStripTools(false);
+            Triangle.Angle = 180;
             objects.Add(Cube);
             objects.Add(Springboard);
             objects.Add(Triangle);
@@ -62,6 +63,7 @@ namespace MironovComposition
                 {
                     objects.Remove(Object);
                     FillListBox();
+                    VisibleStripTools(false);
                     canvas1.Invalidate();
                 }
             }
@@ -297,17 +299,85 @@ namespace MironovComposition
             canvas1.Invalidate();
         }
 
+        protected float dx = 0;
+        protected float dy = 0;
+        protected float speed = 0;
+        protected float v = 10;
+        protected int secondTimer = 3;
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (second <= 30)
+            
+            if (speed <= v)
             {
-                Cube.X++;
+                speed += 0.05f;
+            }
+            if (second <= secondTimer)
+            {
+                if (Cube.Y < 200)
+                    Cube.Enabled = true;
+                else
+                    Cube.Enabled = false;
+
+
+                if (second <= secondTimer - 1.5)
+                {
+                    Lamp.Angle += 0.1;
+                    Triangle.Angle += 0.1;
+                }
+
+                else
+                {
+                    Lamp.Angle -= 0.1;
+                    Triangle.Angle -= 0.1;
+                }
+
+
+
+                if (Cube.Y > 135)
+                {
+                    Cube.Y -= (int)speed;
+                }
+                else
+                {
+                    if (Cube.Y > 60 || Cube.X > 330)
+                    {
+                        if (Cube.Angle <= 22)
+                        {
+                            Cube.Angle += speed;
+                        }
+                        else
+                        {
+                            dx = 3.5f;
+                            dy = 1;
+                            Cube.Y -= (int)dy + (int)speed / 8;
+                        }
+                            
+                    }
+                    else
+                    {
+                        Cube.Y = 50;
+                        if (Cube.Angle > 0)
+                        {
+                            Cube.Angle--;
+                        }
+                    }
+                    Cube.X -= (int)dx + (int)speed / 8;
+                }
+            }
+            else
+            {
+                speed = 0;
+                Cube.X = 540;
+                Cube.Y = 400;
+                Cube.Enabled = false;
+                secondTimer += 3;
             }
             
             value++;
             second = value / 100;
             secondLabel.Text = $"Секунда: {second}";
             valueLabel.Text = $"Тик: {value}";
+            speedLabel.Text = $"Скорость: {(int)speed}";
             canvas1.Invalidate();
         }
     }
