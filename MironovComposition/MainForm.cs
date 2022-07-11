@@ -375,8 +375,8 @@ namespace MironovComposition
             
             value++;
             second = value / 100;
-            secondLabel.Text = $"Секунда: {second}";
-            valueLabel.Text = $"Тик: {value}";
+            secondLabel.Text = $"Секунда: {(int)second}";
+            valueLabel.Text = $"Тик: {(int)value}";
             speedLabel.Text = $"Скорость: {(int)speed}";
             canvas1.Invalidate();
         }
