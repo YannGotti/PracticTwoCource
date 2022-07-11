@@ -24,12 +24,8 @@ namespace MironovComposition
             source.Add(new PointF(1, 1));
             source.Add(new PointF(0, 1));
 
-            sourceShadow.Clear();
-            sourceShadow.Add(new PointF(0, -6));
-            sourceShadow.Add(new PointF(1, 0));
-            sourceShadow.Add(new PointF(1, 1));
-            sourceShadow.Add(new PointF(0, 1));
-            sourceShadow.Add(new PointF(-15, -6));
+            scaleX = 100;
+            scaleY = 100;
 
             xc = 0.5;
             yc = 0.5;
@@ -38,9 +34,18 @@ namespace MironovComposition
         protected override void DrawObject(Graphics g)
         {
             g.FillPolygon(new SolidBrush(Color.FromArgb(R, G, B)), transformed.ToArray());
-
             if (enable)
-                g.FillPolygon(new SolidBrush(Color.FromArgb(30, 0, 0, 0)), transformedShadow.ToArray());
+            {
+                PointF[] pointFs = new PointF[]{
+                    new PointF(bound.Left, bound.Bottom),
+                    new PointF(bound.Left, bound.Bottom - 65 + (float)angle),
+                    transformed[3],
+                    transformed[2],
+                    transformed[1],
+                    new PointF(transformed[1].X, bound.Bottom)
+                };
+                g.FillPolygon(new SolidBrush(Color.FromArgb(30, 0, 0, 0)), pointFs);
+            }
             else
             {
                 g.DrawPolygon(Pens.DarkBlue, transformed.ToArray());
@@ -70,11 +75,8 @@ namespace MironovComposition
             source.Add(new PointF(1, 0));
             source.Add(new PointF(0.5f, 1));
 
-            sourceShadow.Clear();
-            sourceShadow.Add(new PointF(6, 12));
-            sourceShadow.Add(new PointF(1, 0));
-            sourceShadow.Add(new PointF(0.5f, 1));
-            sourceShadow.Add(new PointF(0, 0));
+            scaleX = 100;
+            scaleY = 100;
 
             xc = 0.5;
             yc = 1;
@@ -85,7 +87,33 @@ namespace MironovComposition
             g.FillPolygon(new SolidBrush(Color.FromArgb(R, G, B)), transformed.ToArray());
 
             if (enable)
-                g.FillPolygon(new SolidBrush(Color.FromArgb(30, 0, 0, 0)), transformedShadow.ToArray());
+            {
+                PointF[] pointFs;
+                if (angle > 130)
+                {
+                    pointFs = new PointF[] {
+                        new PointF(bound.Left, bound.Bottom),
+                        new PointF(transformed[1].X, bound.Bottom),
+                        transformed[2],
+                        transformed[1],
+                        new PointF(bound.Left, bound.Bottom - 65 + (float)angle),
+                    };
+                }
+                else
+                {
+                    pointFs = new PointF[]{
+                    new PointF(bound.Left, bound.Bottom),
+                    new PointF(bound.Left, bound.Bottom - 65 + (float)angle),
+                    transformed[2],
+                    transformed[1],
+                    new PointF(transformed[1].X, bound.Bottom)
+
+                };
+                }
+                
+                g.FillPolygon(new SolidBrush(Color.FromArgb(30, 0, 0, 0)), pointFs);
+
+            }
             else
             {
                 g.DrawPolygon(Pens.DarkBlue, transformed.ToArray());

@@ -46,6 +46,15 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.ObjectsComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.addCubeButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.addTriangleButton = new System.Windows.Forms.ToolStripButton();
+            this.deleteObject = new System.Windows.Forms.ToolStripButton();
             this.XLabel = new System.Windows.Forms.ToolStripLabel();
             this.TextBoxX = new System.Windows.Forms.ToolStripTextBox();
             this.YLabel = new System.Windows.Forms.ToolStripLabel();
@@ -58,22 +67,13 @@
             this.rTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.gTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.bTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.submitButton = new System.Windows.Forms.ToolStripButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.valueLabel = new System.Windows.Forms.Label();
             this.secondLabel = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.speedLabel = new System.Windows.Forms.Label();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.addCubeButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.addTriangleButton = new System.Windows.Forms.ToolStripButton();
-            this.deleteObject = new System.Windows.Forms.ToolStripButton();
-            this.submitButton = new System.Windows.Forms.ToolStripButton();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.canvas1 = new MironovComposition.Canvas();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -144,7 +144,7 @@
             this.addCube,
             this.addTriangle});
             this.CreateObject.Name = "CreateObject";
-            this.CreateObject.Size = new System.Drawing.Size(180, 22);
+            this.CreateObject.Size = new System.Drawing.Size(133, 22);
             this.CreateObject.Text = "Создать";
             // 
             // addCube
@@ -164,14 +164,14 @@
             // loadObjects
             // 
             this.loadObjects.Name = "loadObjects";
-            this.loadObjects.Size = new System.Drawing.Size(180, 22);
+            this.loadObjects.Size = new System.Drawing.Size(133, 22);
             this.loadObjects.Text = "Загрузить";
             this.loadObjects.Click += new System.EventHandler(this.loadObjects_Click);
             // 
             // saveObjects
             // 
             this.saveObjects.Name = "saveObjects";
-            this.saveObjects.Size = new System.Drawing.Size(180, 22);
+            this.saveObjects.Size = new System.Drawing.Size(133, 22);
             this.saveObjects.Text = "Сохранить";
             this.saveObjects.Click += new System.EventHandler(this.saveObjects_Click);
             // 
@@ -233,141 +233,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(1084, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // XLabel
-            // 
-            this.XLabel.Name = "XLabel";
-            this.XLabel.Size = new System.Drawing.Size(17, 22);
-            this.XLabel.Text = "X:";
-            // 
-            // TextBoxX
-            // 
-            this.TextBoxX.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.TextBoxX.Name = "TextBoxX";
-            this.TextBoxX.Size = new System.Drawing.Size(50, 25);
-            // 
-            // YLabel
-            // 
-            this.YLabel.Name = "YLabel";
-            this.YLabel.Size = new System.Drawing.Size(17, 22);
-            this.YLabel.Text = "Y:";
-            // 
-            // TextBoxY
-            // 
-            this.TextBoxY.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.TextBoxY.Name = "TextBoxY";
-            this.TextBoxY.Size = new System.Drawing.Size(50, 25);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(62, 25);
-            this.toolStripLabel2.Text = "Масштаб:";
-            // 
-            // SizeTextBox
-            // 
-            this.SizeTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.SizeTextBox.Name = "SizeTextBox";
-            this.SizeTextBox.Size = new System.Drawing.Size(50, 25);
-            this.SizeTextBox.Text = "100";
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(58, 25);
-            this.toolStripLabel3.Text = "Поворот:";
-            // 
-            // RotateTextBox
-            // 
-            this.RotateTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.RotateTextBox.Name = "RotateTextBox";
-            this.RotateTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.RotateTextBox.Size = new System.Drawing.Size(50, 25);
-            this.RotateTextBox.Text = "0";
-            // 
-            // toolStripLabel4
-            // 
-            this.toolStripLabel4.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(36, 25);
-            this.toolStripLabel4.Text = "Цвет:";
-            // 
-            // rTextBox
-            // 
-            this.rTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.rTextBox.Name = "rTextBox";
-            this.rTextBox.Size = new System.Drawing.Size(45, 25);
-            this.rTextBox.Text = "145";
-            // 
-            // gTextBox
-            // 
-            this.gTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gTextBox.Name = "gTextBox";
-            this.gTextBox.Size = new System.Drawing.Size(45, 25);
-            this.gTextBox.Text = "145";
-            // 
-            // bTextBox
-            // 
-            this.bTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bTextBox.Name = "bTextBox";
-            this.bTextBox.Size = new System.Drawing.Size(45, 25);
-            this.bTextBox.Text = "145";
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Controls.Add(this.valueLabel);
-            this.flowLayoutPanel1.Controls.Add(this.secondLabel);
-            this.flowLayoutPanel1.Controls.Add(this.speedLabel);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 522);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1084, 19);
-            this.flowLayoutPanel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Скорость анимации: ";
-            // 
-            // valueLabel
-            // 
-            this.valueLabel.AutoSize = true;
-            this.valueLabel.Location = new System.Drawing.Point(123, 0);
-            this.valueLabel.Name = "valueLabel";
-            this.valueLabel.Size = new System.Drawing.Size(29, 13);
-            this.valueLabel.TabIndex = 1;
-            this.valueLabel.Text = "Тик:";
-            // 
-            // secondLabel
-            // 
-            this.secondLabel.AutoSize = true;
-            this.secondLabel.Location = new System.Drawing.Point(158, 0);
-            this.secondLabel.Name = "secondLabel";
-            this.secondLabel.Size = new System.Drawing.Size(52, 13);
-            this.secondLabel.TabIndex = 2;
-            this.secondLabel.Text = "Секунда:";
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 10;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // speedLabel
-            // 
-            this.speedLabel.AutoSize = true;
-            this.speedLabel.Location = new System.Drawing.Point(216, 0);
-            this.speedLabel.Name = "speedLabel";
-            this.speedLabel.Size = new System.Drawing.Size(58, 13);
-            this.speedLabel.TabIndex = 3;
-            this.speedLabel.Text = "Скорость:";
             // 
             // toolStripButton2
             // 
@@ -457,6 +322,87 @@
             this.deleteObject.Text = "Удалить выбранную фигуру";
             this.deleteObject.Click += new System.EventHandler(this.deleteObject_Click);
             // 
+            // XLabel
+            // 
+            this.XLabel.Name = "XLabel";
+            this.XLabel.Size = new System.Drawing.Size(17, 22);
+            this.XLabel.Text = "X:";
+            // 
+            // TextBoxX
+            // 
+            this.TextBoxX.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.TextBoxX.Name = "TextBoxX";
+            this.TextBoxX.Size = new System.Drawing.Size(50, 25);
+            // 
+            // YLabel
+            // 
+            this.YLabel.Name = "YLabel";
+            this.YLabel.Size = new System.Drawing.Size(17, 22);
+            this.YLabel.Text = "Y:";
+            // 
+            // TextBoxY
+            // 
+            this.TextBoxY.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.TextBoxY.Name = "TextBoxY";
+            this.TextBoxY.Size = new System.Drawing.Size(50, 25);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(62, 25);
+            this.toolStripLabel2.Text = "Масштаб:";
+            // 
+            // SizeTextBox
+            // 
+            this.SizeTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.SizeTextBox.Name = "SizeTextBox";
+            this.SizeTextBox.Size = new System.Drawing.Size(50, 25);
+            this.SizeTextBox.Text = "100";
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(58, 25);
+            this.toolStripLabel3.Text = "Поворот:";
+            // 
+            // RotateTextBox
+            // 
+            this.RotateTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.RotateTextBox.Name = "RotateTextBox";
+            this.RotateTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.RotateTextBox.Size = new System.Drawing.Size(50, 25);
+            this.RotateTextBox.Text = "0";
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(36, 25);
+            this.toolStripLabel4.Text = "Цвет:";
+            // 
+            // rTextBox
+            // 
+            this.rTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.rTextBox.Name = "rTextBox";
+            this.rTextBox.Size = new System.Drawing.Size(45, 25);
+            this.rTextBox.Text = "145";
+            // 
+            // gTextBox
+            // 
+            this.gTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gTextBox.Name = "gTextBox";
+            this.gTextBox.Size = new System.Drawing.Size(45, 25);
+            this.gTextBox.Text = "145";
+            // 
+            // bTextBox
+            // 
+            this.bTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bTextBox.Name = "bTextBox";
+            this.bTextBox.Size = new System.Drawing.Size(45, 25);
+            this.bTextBox.Text = "145";
+            // 
             // submitButton
             // 
             this.submitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -467,11 +413,64 @@
             this.submitButton.Text = "Применить";
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.label1);
+            this.flowLayoutPanel1.Controls.Add(this.valueLabel);
+            this.flowLayoutPanel1.Controls.Add(this.secondLabel);
+            this.flowLayoutPanel1.Controls.Add(this.speedLabel);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 522);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1084, 19);
+            this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(114, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Скорость анимации: ";
+            // 
+            // valueLabel
+            // 
+            this.valueLabel.AutoSize = true;
+            this.valueLabel.Location = new System.Drawing.Point(123, 0);
+            this.valueLabel.Name = "valueLabel";
+            this.valueLabel.Size = new System.Drawing.Size(29, 13);
+            this.valueLabel.TabIndex = 1;
+            this.valueLabel.Text = "Тик:";
+            // 
+            // secondLabel
+            // 
+            this.secondLabel.AutoSize = true;
+            this.secondLabel.Location = new System.Drawing.Point(158, 0);
+            this.secondLabel.Name = "secondLabel";
+            this.secondLabel.Size = new System.Drawing.Size(52, 13);
+            this.secondLabel.TabIndex = 2;
+            this.secondLabel.Text = "Секунда:";
+            // 
+            // speedLabel
+            // 
+            this.speedLabel.AutoSize = true;
+            this.speedLabel.Location = new System.Drawing.Point(216, 0);
+            this.speedLabel.Name = "speedLabel";
+            this.speedLabel.Size = new System.Drawing.Size(58, 13);
+            this.speedLabel.TabIndex = 3;
+            this.speedLabel.Text = "Скорость:";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // canvas1
             // 
             this.canvas1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.canvas1.Location = new System.Drawing.Point(0, 49);
-            this.canvas1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.canvas1.Name = "canvas1";
             this.canvas1.Size = new System.Drawing.Size(1084, 473);
             this.canvas1.TabIndex = 3;
@@ -529,7 +528,6 @@
         private System.Windows.Forms.ToolStripTextBox rTextBox;
         private System.Windows.Forms.ToolStripTextBox gTextBox;
         private System.Windows.Forms.ToolStripTextBox bTextBox;
-        private Canvas canvas1;
         private System.Windows.Forms.ToolStripButton submitButton;
         private System.Windows.Forms.ToolStripLabel XLabel;
         private System.Windows.Forms.ToolStripTextBox TextBoxY;
@@ -548,6 +546,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private Canvas canvas1;
     }
 }
 

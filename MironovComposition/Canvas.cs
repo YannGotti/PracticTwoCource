@@ -22,7 +22,6 @@ namespace MironovComposition
             InitializeComponent();
             objectsList = null;
             DoubleBuffered = true;
-            sceneSize = 1100;
             viewMatrix = new MatrixObject();
         }
 
@@ -35,6 +34,7 @@ namespace MironovComposition
         {
             base.OnPaint(e);
             // Вывод карты
+            sceneSize = ClientRectangle.Width;
             Draw(e.Graphics, ClientRectangle);
         }
 
@@ -62,6 +62,7 @@ namespace MironovComposition
                         0, sceneHeight, bound.Bottom, bound.Top);
 
                     Object o = objectsList[i];
+                    o.Bound = bound;
                     o.Draw(g, viewMatrix);
                 }
             }

@@ -30,9 +30,7 @@ namespace MironovComposition
         protected bool enable;
 
         protected List<PointF> source;
-        protected List<PointF> sourceShadow;
         protected List<PointF> transformed;
-        protected List<PointF> transformedShadow;
 
         protected double angle;
 
@@ -41,6 +39,8 @@ namespace MironovComposition
 
         protected double xc;
         protected double yc;
+
+        protected Rectangle bound;
 
         protected MatrixObject scaleMatrix;
         protected MatrixObject rotationMatrix;
@@ -55,8 +55,6 @@ namespace MironovComposition
         {
             source = new List<PointF>();
             transformed = new List<PointF>();
-            transformedShadow = new List<PointF>();
-            sourceShadow = new List<PointF>();
 
             xc = 0;
             yc = 0;
@@ -89,9 +87,6 @@ namespace MironovComposition
             transformed.Clear();
             for (int i = 0; i < source.Count; i++)
                 transformed.Add(new PointF());
-            transformedShadow.Clear();
-            for (int i = 0; i < sourceShadow.Count; i++)
-                transformedShadow.Add(new PointF());
         }
 
         public string Name
@@ -159,6 +154,13 @@ namespace MironovComposition
             set { angle = value; }
             get { return angle; }
         }
+
+        public Rectangle Bound
+        {
+            set { bound = value; }
+            get { return bound; }
+        }
+
 
         public int ColorR
         {
@@ -234,8 +236,6 @@ namespace MironovComposition
         {
             if (transformed.Count != source.Count)
                 CreateTransformedPoints();
-            if (transformedShadow.Count != sourceShadow.Count)
-                CreateTransformedPoints();
 
             resultMatrix.Identity();
 
@@ -255,8 +255,6 @@ namespace MironovComposition
 
             for (int i = 0; i < source.Count; i++)
                 transformed[i] = resultMatrix.Transform(source[i]);
-            for (int i = 0; i < sourceShadow.Count; i++)
-                transformedShadow[i] = resultMatrix.Transform(sourceShadow[i]);
         }
 
         protected virtual void DrawObject(Graphics g)
