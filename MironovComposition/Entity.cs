@@ -42,7 +42,7 @@ namespace MironovComposition
                     transformed[3],
                     transformed[2],
                     transformed[1],
-                    new PointF(transformed[1].X, bound.Bottom)
+                    new PointF(transformed[1].X - (float)angle, bound.Bottom),
                 };
                 g.FillPolygon(new SolidBrush(Color.FromArgb(30, 0, 0, 0)), pointFs);
             }
